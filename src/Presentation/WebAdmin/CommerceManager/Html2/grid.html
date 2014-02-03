@@ -17,11 +17,15 @@
             
             <!-- Knockout script -->
             <script src="/Scripts/_oss/knockout-2.1.0.js"></script>
-            <script src="/Scripts/_oss/simple.inheritance.js"></script>
             
 
             <!-- fx shell scripts -->
             <script src="/Scripts/UxFxScript.min.js"></script>
+            
+            <script>
+                this.waz = [];
+                this.waz.formatters = [];
+            </script>
             
             
             <script src="/Scripts/waz/waz.formatters.js"></script>
@@ -58,36 +62,36 @@
                 function loadTab(extension, renderArea, initData) {
                     // Create a dataset so the client-side framework knows how to get the data for refreshes
                     var localDataSet = [
-                            { Name: "asdasd", Type: "string" },
-                            {Name: "asdasd", Type: "string"}
-                        ];//Exp.Data.getLocalDataSet(DomainTenantExtension.Controller.listOwnedDomainNamesUrl),
+                        { Name: "asdasd", Type: "string" },
+                        {Name: "asdasd", Type: "string"}
+                    ];//Exp.Data.getLocalDataSet(DomainTenantExtension.Controller.listOwnedDomainNamesUrl),
                     // Define the columns in the grid. A number of pre-defined types exist.
                     columns = [
-                      { name: "Name", field: "Name", sortable: false },
-                      //{ name: "Status", field: "Status", type: "status", displayStatus: waz.interaction.statusIconHelper(statusIcons), filterable: false, sortable: false },
-                      { name: "Type", field: "Type", filterable: false, sortable: false }//,
-                      //{ name: "Expires", field: "ExpiryDate", filterable: false, sortable: false, formatter: dateFormatter }
+                        { name: "Name", field: "Name", sortable: false },
+                        //{ name: "Status", field: "Status", type: "status", displayStatus: waz.interaction.statusIconHelper(statusIcons), filterable: false, sortable: false },
+                        { name: "Type", field: "Type", filterable: false, sortable: false }//,
+                        //{ name: "Expires", field: "ExpiryDate", filterable: false, sortable: false, formatter: dateFormatter }
                     ];
 
                     grid = renderArea.find(".gridContainer")
-                      .wazObservableGrid("destroy")
-                      .wazObservableGrid({
-                          lastSelectedRow: null,
-                          data: localDataSet,
-                          keyField: "name",
-                          columns: columns,
-                          gridOptions: {
-                              // Function to call when a row is selected. Optional.
+                        .wazObservableGrid("destroy")
+                        .wazObservableGrid({
+                            lastSelectedRow: null,
+                            data: localDataSet,
+                            keyField: "name",
+                            columns: columns,
+                            gridOptions: {
+                                // Function to call when a row is selected. Optional.
                               // rowSelect: onRowSelected
-                          },
-                          // If the grid is empty, a template can be rendered instead, typically suggesting to the user that they create a new resource
-                          emptyListOptions: {
-                              extensionName: "DomainTenantExtension",
-                              templateName: "domainsTabEmpty",
-                              arrowLinkSelector: ("{0} .dm-new-domain-link").format(renderArea.selector),
-                              arrowLinkAction: global.DomainTenantExtension.CreateWizard.showCreateWizard
-                          }
-                      });
+                            },
+                            // If the grid is empty, a template can be rendered instead, typically suggesting to the user that they create a new resource
+                            emptyListOptions: {
+                                extensionName: "DomainTenantExtension",
+                                templateName: "domainsTabEmpty",
+                                arrowLinkSelector: ("{0} .dm-new-domain-link").format(renderArea.selector)//,
+                                //arrowLinkAction: global.DomainTenantExtension.CreateWizard.showCreateWizard
+                            }
+                        });
                 }
 
                 loadTab(null, $("#sampleHTMLCodeContainer"), null);

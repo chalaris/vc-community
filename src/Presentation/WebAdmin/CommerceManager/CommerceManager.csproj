@@ -328,6 +328,7 @@
     <Content Include="Content\_oss\themes\base\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Html2\grid.html" />
+    <Content Include="Html2\grid2.html" />
     <Content Include="Html\controls.html" />
     <Content Include="Html\grid.html" />
     <Content Include="Html\radio.html" />
