@@ -1,0 +1,119 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8"/>
+        <title>Simple Text Box Examples</title>
+        <!-- Style Links -->
+        <link href="/Content/_oss/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" /> 
+        <link href="/Content/UxFxCss.min.css" rel="stylesheet" type="text/css" />
+        <link href="/Extensions/Samples/ControlsPlayground/Styles/ControlsPlaygroundExtension.Samples.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="scriptLinksContainer">
+            <!-- JQuery scripts-->
+            <script src="/Scripts/_oss/jquery-1.7.1.js"></script>
+            <script src="/Scripts/_oss/jquery-ui-1.8.18.js"></script>
+            
+            <!-- Knockout script -->
+            <script src="/Scripts/_oss/knockout-2.1.0.js"></script>
+
+            <!-- fx shell scripts -->
+            <script src="/Scripts/UxFxScript.min.js"></script>
+        </div>
+
+    <!-- Sample HTML code -->
+    <div id="sampleHTMLCodeContainer"> 
+
+        <div>
+            <button id="EnableButton">Enable</button>
+            <button id="DisableButton">Disable</button><br />
+            Current value on changed: <span id="CurrentValueOnChangedSpan" ></span><br />
+            Current value on demand: <span id="CurrentValueOnDemandSpan" ></span><button id="CurrentValueButton">Get</button><br />
+            Select this value: <input id="SelectValueTextBox" type="text" style="width:55px" /><button id="SelectValueButton">Select</button><br />
+            <button id="RevertButton">Revert to Original Value</button><br />
+            <button id="UpdateInitialValueButton">Update Initial Value</button><br />
+            <input id="TrackEditCheckbox" type="checkbox" checked="checked" /> Track Edit
+        </div>
+        <br />
+        <div id="sample-radio" class="radio pushbutton"></div>
+        <!-- Workaround IE9 cache issue where it doesn't like to lonely spans that only have text changing-->
+        <div id="MessageSpanContainer"><span id="MessageSpan" style="color:Green">Not Edited</span></div>
+    </div>
+    
+    
+    <!-- Sample Script Code -->
+    <div id="sampleScriptCodeContainer">
+        <script type="text/javascript">
+            //helper to get the selected value
+            var getSelectedValue = function () {
+                return $("#sample-radio").fxRadio("value");
+            };
+
+            //List data for our radio buttons
+            var sizes = [
+                { text: "1GB", value: "1GB" },
+                { text: "5GB", value: "5GB" },
+                { text: "10GB", value: "10GB" },
+                { text: "25GB", value: "25GB" },
+                { text: "50GB", value: "50GB" },
+                { text: "100GB", value: "100GB" },
+                { text: "150GB", value: "150GB" },
+                { text: "200GB", value: "200GB" }
+            ];
+
+            //Initialize the controls and buttons
+            $("#EnableButton").click(function () {
+                $("#sample-radio").fxRadio("enable");
+            });
+
+            $("#DisableButton").click(function () {
+                $("#sample-radio").fxRadio("disable");
+            });
+
+            //Get the current selected value of the radio button
+            $("#CurrentValueButton").click(function () {
+                $("#CurrentValueOnDemandSpan").text(getSelectedValue().text);
+            });
+
+            //Select the given value
+            $("#SelectValueButton").click(function () {
+                var updatedValue = $.grep(sizes, function (n, i) {
+                    return n.value === $("#SelectValueTextBox").val();
+                })[0];
+                $("#sample-radio").fxRadio("option", "value", updatedValue);
+            });
+
+            //Reset to the default value
+            $("#RevertButton").click(function () {
+                $("#sample-radio").fxRadio("undo");
+            });
+
+            //Update the default value
+            $("#UpdateInitialValueButton").click(function () {
+                $("#sample-radio").fxRadio("resetOriginal");
+            });
+
+            //Bind to any changes to the radio button value
+            $("#sample-radio").bind("change.fxcontrol", function () {
+                $("#MessageSpan").html($(this).fxEditableControl("hasEditedControls") ? "<span id='MessageSpan' style='color:Red;font-weight:bold'>Edited</span>" : "<span id='MessageSpan' style='color:Green;font-weight:normal'>Not Edited</span>");
+            });
+
+            //track changes or not
+            $("#TrackEditCheckbox").change(function () {
+                $("#sample-radio").fxRadio("option", "trackedit", $("#TrackEditCheckbox").is(':checked') ? true : false);
+            });
+
+            $("#sample-radio").fxRadio({
+                value: sizes[3], //default value
+                values: sizes, //list of values to display
+                change: function (event, args) { //bind to change event
+                    $("#CurrentValueOnChangedSpan").text(args.value.text);
+                }
+            });
+            $("#CurrentValueOnDemandSpan").text(getSelectedValue().text);
+        </script>
+    </div>
+</body>
+</html>

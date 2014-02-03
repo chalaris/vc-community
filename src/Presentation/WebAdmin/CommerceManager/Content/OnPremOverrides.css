@@ -1,0 +1,215 @@
+﻿/* OnPremOverrides.css */
+
+.fxshell-avatarbar .preview-badge,
+.fxshell-avatarbar .fxshell-avatarbar-feedback
+{
+    display:none;
+}
+
+#aux-foreground
+{
+    background: #040707 url(/Content/Home/Images/background.jpg) no-repeat center bottom;
+    font-family: "Segoe UI", Sans-Serif;
+    color: #fff;
+    font-size: 20px;
+}
+
+#feature
+{
+    width: 880px;
+    margin: 95px auto 0 auto;
+    overflow: auto;
+}
+
+#content
+{
+    float: left;
+    width: 430px;
+}
+
+#content a.button
+{
+    background: none repeat scroll 0 0 #8CC541;
+    border: 1px solid #FFF;
+    color: #FFF;
+    display: inline-block;
+    font-size: 26px;
+    line-height: 46px;
+    margin-top: 10px;
+    padding: 0 15px 3px;
+    text-decoration: none;
+}
+
+#content a.button img
+{
+    float: right;
+    padding: 10px 0 0 15px;
+}
+
+#hero
+{
+    float: right;
+    width: 501px;
+}
+
+#content h1
+{
+    font-family: "Segoe UI", Sans-Serif;
+    color: #fff;
+    font-weight: normal;
+    font-size: 42px;
+    line-height: 42px;
+}
+
+/* Wizard
+************************************************************/
+
+.configuration .column-container
+{
+    width: 720px;
+}
+
+.configuration .column-container .column
+{
+    border-style: none;
+    float: left;
+}
+
+.configuration .column-container .column2
+{
+    width: 320px;
+}
+
+.configuration .column-container .help-column
+{
+    width: 20px;
+}
+.configuration .column-container .help-column .configuration-passphrase-info-help
+{
+    margin-top: 20px;
+}
+
+.configuration .break
+{
+    clear: both;
+}
+
+.configuration h2.aux-dialogText
+{
+    font-weight: normal;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
+
+.configuration .radio-container
+{
+    padding: 5px 0px 5px 0px;
+    display: inline;
+}
+
+.configuration .radio-container input[type="radio"]
+{
+    margin: 0px;
+    margin-right: 4px;
+    display: inline;
+    float: left;
+    width: auto;
+    vertical-align: baseline;
+}
+
+.configuration .configuration-long-field input[type="text"]
+{
+    width: 500px;
+}
+
+.configuration .configuration-help-header-section
+{
+    height: 40px;
+}
+
+.configuration .configuration-help-header-section .aux-dialogText
+{
+    float: left;
+}
+
+.configuration .configuration-help-header-section .waz-config-help-balloon
+{
+    float: right;
+    margin: 15px 0px 5px;
+}
+
+.configuration-scrollable-container
+{
+    width: 860px;
+    height: 440px;
+    margin: 0px;
+    overflow: auto;
+    padding: 1px;
+}
+
+.configuration-scrollable-container2
+{
+    width: 860px;
+    height: 400px;
+    margin: 0px;
+    overflow: auto;
+    padding: 1px;
+}
+
+.configuration-scrollable-features
+{
+    width: 820px;
+    height: 400px;
+    overflow: auto;
+    padding: 1px;
+}
+
+.configuration-scrollable-features2
+{
+    width: 820px;
+    height: 60px;
+    overflow: auto;
+    padding: 1px;
+}
+
+.configuration-scrollable-websites-events
+{
+    width: 855px;
+    height: 300px;
+    overflow: auto;
+    padding: 1px;
+}
+
+.configuration-serviceinfo
+{
+    list-style-type: none;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.configure-websitesconsent .config-consent-description
+{
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.configure-websitesconsent .break
+{
+    height: 30px;
+}
+
+.configure-websitesconsent .column-container .column
+{
+    overflow: hidden;
+}
+
+.configuration .column-container .column2
+{
+    height: 70px;
+}
+
+.configuration .column2 .dl-label
+{
+    height: 32px;
+}

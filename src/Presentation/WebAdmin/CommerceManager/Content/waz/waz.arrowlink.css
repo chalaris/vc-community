@@ -1,0 +1,17 @@
+a.arrowlink {
+    background: transparent url(/Content/Images/icon-next-20-g-idl.png) no-repeat right 50%;
+    padding: 4px 0 3px 24px;
+}
+
+a.arrowlink:hover {
+    background-image: url(/Content/Images/icon-next-20-g-hvr.png);
+}
+
+a.arrowlink-right {
+    background: transparent url(/Content/Images/icon-next-20-g-idl.png) no-repeat right 50%;
+    padding: 4px 30px 3px 0;
+}
+
+a.arrowlink-right:hover {
+    background-image: url(/Content/Images/icon-next-20-g-hvr.png);
+}

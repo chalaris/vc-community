@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8"/>
+        <title>Simple Tab List Examples</title>
+        <!-- Style Links -->
+        <link href="/Content/_oss/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" /> 
+        <link href="/Content/UxFxCss.min.css" rel="stylesheet" type="text/css" />
+        <link href="/Extensions/Samples/ControlsPlayground/Styles/ControlsPlaygroundExtension.Samples.css" rel="stylesheet" type="text/css" />
+        <link href="/Extensions/Samples/ControlsPlayground/Styles/ControlsPlaygroundExtension.TabList.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="scriptLinksContainer">
+            <!-- JQuery scripts-->
+            <script src="/Scripts/_oss/jquery-1.7.1.js"></script>
+            <script src="/Scripts/_oss/jquery-ui-1.8.18.js"></script>
+            
+            <!-- Knockout script -->
+            <script src="/Scripts/_oss/knockout-2.1.0.js"></script>
+
+            <!-- fx shell scripts -->
+            <script src="/Scripts/UxFxScript.min.js"></script>
+        </div>
+
+        <!-- Sample HTML code -->
+        <div id="sampleHTMLCodeContainer">
+            <div class="commands">
+                <button id="enable">Enable</button>
+                <button id="disable">Disable</button>
+            </div>
+            <section>
+                <div id="sample-tablist" class="controlsPlayground pushbutton"></div>
+                <div id="tab1" class="controlsPlayground">tab 1</div><div id="tab2" class="controlsPlayground">tab 2</div>
+            </section>
+        </div>
+
+        <!-- Sample Script Code -->
+        <div id="sampleScriptCodeContainer">
+            <script type="text/javascript">
+                //Bind our buttons to the tablist
+                $("#enable").click(function () {
+                    $("#sample-tablist").fxTabList("enable");
+                });
+
+                $("#disable").click(function () {
+                    $("#sample-tablist").fxTabList("disable");
+                });
+
+                // initialize our tablist
+                $("#sample-tablist").fxTabList({
+                    //Tabs to show
+                    values: [
+                        { text: "Production", value: "Production" },
+                        { text: "Staging", value: "Staging" }
+                    ],
+                    //The corresponding "panels" that the tab values  map to.  This is matched based on ordering between values and panels
+                    panels: [$("#tab1"), $("#tab2")]
+                });
+            </script>
+        </div>
+    </body>
+</html>

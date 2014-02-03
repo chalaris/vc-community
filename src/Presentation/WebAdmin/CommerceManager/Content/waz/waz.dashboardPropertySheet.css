@@ -1,0 +1,91 @@
+.waz-dashboardPropertySheet-outerDiv {
+    font-family: "Segoe UI";
+    word-wrap: break-word;
+}
+
+.waz-dashboardPropertySheet-outerDiv ul {
+    margin: 0;
+    padding: 0;
+}
+
+.waz-dashboardPropertySheet-status {
+    font-size: 14px;
+    font-family: "Segoe UI Semibold";
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.waz-dashboardPropertySheet-status.waz-dashboardPropertySheet-error {
+    color: #E40101;
+}
+
+.waz-dashboardPropertySheet-statusMessage {
+    color: #666;
+    font-size: 21px;
+    font-family: "Segoe UI Light";
+    line-height: 27px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+}
+
+.waz-dashboardPropertySheet-quickGlance {
+    color: #444;
+    font-size: 20px;
+    font-family: "Segoe UI Light";
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.waz-dashboardPropertySheet-propertyName {
+    color: #525252;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    font-family: "Segoe UI Semibold";
+}
+
+.waz-dashboardPropertySheet-propertyValue {
+    color: #333;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.waz-dashboardPropertySheet-hyperlink {
+    color: #2086BF;
+    text-decoration: none;
+}
+
+.waz-dashboardPropertySheet-action {
+    color: #2086BF;
+    font-size: 12px;
+    text-decoration: none;
+    float: left;
+    display: block;
+    width: 100%;
+    margin-bottom: 8px; /* TODO: Review */
+}
+
+.waz-dashboardPropertySheet-actionName {
+    padding-top: 2px;
+}
+
+.waz-dashboardPropertySheet-actionImageWrapper {
+    float: left;
+}
+
+.waz-dashboardPropertySheet-action img {
+    border: 0;
+    margin-right: 9px;
+}
+
+.waz-dashboardPropertySheet-actionPreviewLabel {
+    padding-left: 5px;
+    color: #8bc53f;
+    font: bold 9px/9px "Segoe UI";
+    text-transform: uppercase;
+}
+
+ul.waz-dashboardPropertySheet-links {
+    list-style-type: none;
+    margin-bottom: 15px;
+}

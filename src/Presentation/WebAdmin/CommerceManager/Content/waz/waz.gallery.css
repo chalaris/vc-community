@@ -1,0 +1,296 @@
+﻿/* ============================== Gallery ============================== */
+
+.waz-gallery {
+    width: 800px; /* container .wizard-step has no native size, so this is needed */
+    height: 465px;
+    margin-left: -30px;
+    overflow: hidden;
+}
+
+.waz-gallery-hidden {
+    display: none;
+}
+
+.waz-gallery-busy-indicator {
+    width: 800px;
+    height: 460px;
+    background: url(/Content/Images/spinner-md.gif) no-repeat center center;
+}
+
+/* ============================== Categories ============================== */
+
+.waz-gallery-categories {
+    width: 199px;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #CDCDCD;
+    text-transform: uppercase;
+}
+
+.waz-gallery-categories-list {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.waz-gallery-categories-list li {
+    font-family: "Segoe UI Semibold";
+    font-size: 12px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.waz-gallery-categories-list li:hover {
+    color: #4F9DD7;
+}
+
+.waz-gallery-categories-list li.waz-gallery-categories-selected {
+    padding-left: 25px;
+    border-left: 5px solid #4F9DD7;
+    background-color: #ECECEC;
+    color: #4F9DD7;
+}
+
+/* ============================== Gallery Items sort ================= */
+
+.waz-gallery-items-sort-header {
+    font-family: "Segoe UI Semibold";
+    text-transform: uppercase;
+    padding-bottom: 0px;
+    padding-left: 17px;
+}
+
+.waz-gallery-items-sort-header .fx-dropdown {
+    border: none;
+    display: inline-block;
+    font-size: 11px;
+    width: auto;
+}
+
+.waz-gallery-items-sort-header .fx-dropdown .fx-dropdown-list li {
+    height: 20px;
+    line-height: 20px;
+    width: auto;
+}
+
+.waz-gallery-items-sort-list li {
+    float: left;
+    font-family: "Segoe UI Semibold";
+    font-size: 10px;
+    line-height: 15px;
+    padding: 5px 30px 5px 0px;
+    cursor: pointer;
+}
+
+.waz-gallery-items-sort-list li:hover {
+    color: #4F9DD7;
+}
+
+.waz-gallery-items-sort-list li.waz-gallery-items-sort-selected {
+    padding-left: 0px;
+    padding-right: 25px;
+    color: #4F9DD7;
+}
+
+/* ============================== Items ============================== */
+
+.waz-gallery-no-item-info {
+    text-align: center;
+    margin-top: 200px;
+    font-size: 14px;
+}
+
+.waz-gallery-items-container {
+    width: 596px;
+    height: 100%;
+    float: left;
+}
+
+.waz-gallery-items-scrollable {
+    height: 438px;
+    margin: 0px;
+    overflow: auto;
+    padding: 0px;
+    width: 299px;
+}
+
+.waz-gallery-items-list-container {
+    width: 299px;
+    height: 100%;
+    float: left;
+    padding: 0px;
+    border-right: 1px solid #CDCDCD;
+}
+
+.waz-gallery-increase-container-width {
+    width: 796px;
+}
+
+.waz-gallery-increase-items-width {
+    width: 499px;
+}
+
+.waz-gallery-items-list {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.waz-gallery-items-list li {
+    font-size: 14px;
+    border-left: 5px solid transparent;
+    padding: 6px 0 6px 20px;
+    cursor: pointer;
+}
+
+.waz-gallery-items-list li:hover {
+    background-color: #E6E6E6;
+}
+
+.waz-gallery-items-list li div img {
+    vertical-align: middle;
+    padding-right: 8px;
+    width: 30px;
+    float: left;
+    display: block;
+}
+
+.waz-gallery-items-list li div span {
+    display: block;
+    vertical-align: middle;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.waz-gallery-items-list .waz-gallery-items-selected {
+    background-color: #ECECEC;
+    border-left: 5px solid #4F9DD7;
+}
+
+/* ============================== Item Details ============================== */
+
+.waz-gallery-item-details {
+    width: 255px;
+    height: 465px;
+    float: right;
+    padding-right: 30px;
+}
+
+.waz-gallery-item-details-container {
+    width: 255px;
+    height: 465px;
+    vertical-align: top;
+}
+
+.waz-gallery-item-details-additionalInformation {
+    padding-top: 10px;
+    vertical-align: bottom;
+}
+
+.waz-gallery-item-details-additionalInformation h2 {
+    margin-bottom: 1px;
+    text-transform: uppercase;
+    font-family: "Segoe UI Semibold";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.waz-gallery-item-details-header {
+    overflow: hidden; /* clearfix */
+    margin-bottom: 15px;
+}
+
+.waz-gallery-item-details-header img {
+    width: 60px;
+    vertical-align: middle;
+    float: left;
+    display: block;
+    margin-right: 8px;
+}
+
+.waz-gallery-item-details-header span {
+    display: block;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.waz-gallery-item-details-description {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.waz-gallery-item-details-properties div {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.waz-gallery-item-details-header-property-name {
+    width: 95px;
+    vertical-align: top;
+    text-transform: uppercase;
+    display: inline-block;
+    font-family: "Segoe UI Semibold";
+    font-size: 11px;
+    word-wrap: break-word;
+    padding-right: 10px;
+}
+
+.waz-gallery-item-details-header-property-value {
+    width: 140px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+/* rating stars */
+.waz-gallery-item-details-ratings-count {
+    font-size: 13px;
+    line-height: 14px;
+    padding-left: 85px;
+    margin-bottom: 0px;
+}
+
+.waz-gallery-item-details-ratings { 
+    position: relative;
+    float: left;
+    width: 80px;
+    height: 15px;
+}
+
+.waz-gallery-item-details-ratings .cover {
+    position: absolute;
+    background: transparent url(/Content/Images/waz.gallery.stars-light.png) top left no-repeat;
+    top: 0px;
+    left: 0px;
+    width: 80px;
+    height: 15px;
+    z-index: 101;
+}
+
+.waz-gallery-item-details-ratings .progress {
+    position: absolute;
+    background: transparent url(/Content/Images/waz.gallery.stars-dark.png) top left no-repeat;
+    top: 0px;
+    left: 0px;
+    height: 15px;
+    z-index: 102;
+}
+
+.waz-gallery-item-details-premium {
+    color: #333;
+    background-color: #E2E3E5;
+    padding: 5px 10px 5px 10px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    border-left: 5px solid #e52c79;
+}

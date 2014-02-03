@@ -1,0 +1,303 @@
+.metricChart {
+    width: 100%;
+    position: relative;
+}
+
+.metricChart .columnSelectionRow {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    display: none;
+}
+
+.metricChart .columnSelectionRow .columnSelectionCell {
+    position: absolute;
+    display: block;
+    top: 4px;
+    background-color: #e1f3fb;
+}
+
+.metricChart .columnSelectionRow .columnSelectionCell:hover {
+    background: #71b1d1 url(../Images/grid-up-go-wht.png) no-repeat top center;
+}
+
+.metricChart .timeAxis {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.metricChart .timeAxis .timeValue {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    color: #545454;
+    font-family: "Segoe UI";
+    font-size: 10px;
+}
+
+.metricChart .marquee {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+
+.metricChart .chartArea {
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+}
+
+.metricChart .chartArea .cell {
+    position: absolute;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+}
+
+.metricChart .chartArea .cell .innerText {
+    padding: 5px;
+    font-size: 10px;
+    color: #fff;
+    position: relative;
+    font-family: "Segoe UI";
+    text-decoration: none;
+}
+
+.metricChart .chartArea .cell.cs-1 {
+    background-color: rgb(214,214,214);
+}
+.metricChart .chartArea .cell.cs0 {
+    background-color: rgb(255,0,0);
+}
+.metricChart .chartArea .cell.cs1 {
+    background-color: rgb(255,84,0);
+}
+.metricChart .chartArea .cell.cs2 {
+    background-color: rgb(255,114,0);
+}
+.metricChart .chartArea .cell.cs3 {
+    background-color: rgb(255,144,0);
+}
+.metricChart .chartArea .cell.cs4 {
+    background-color: rgb(255,198,0);
+}
+.metricChart .chartArea .cell.cs5 {
+    background-color: rgb(255,252,0);
+}
+.metricChart .chartArea .cell.cs6 {
+    background-color: rgb(186,255,0);
+}
+.metricChart .chartArea .cell.cs7 {
+    background-color: rgb(72,255,0);
+}
+.metricChart .chartArea .cell.cs8 {
+    background-color: rgb(3,218,24);
+}
+.metricChart .chartArea .cell.cs9 {
+    background-color: rgb(10,185,27);
+}
+.metricChart .chartArea .cell.cs10 {
+    background-color: rgb(6,145,19);
+}
+
+.metricChart .chartArea .cell.cs-1 .innerText {
+    color: #000;
+}
+
+.metricChart .chartArea .cell.cs0 .innerText, .metricChart .chartArea .cell.cs1 .innerText, .metricChart .chartArea .cell.cs2 .innerText, .metricChart .chartArea .cell.cs3 .innerText, .metricChart .chartArea .cell.cs4 .innerText, .metricChart .chartArea .cell.cs9 .innerText, .metricChart .chartArea .cell.cs10 .innerText {
+    color: #fff;
+}
+
+.metricChart .chartArea .cell.cs5 .innerText, .metricChart .chartArea .cell.cs6 .innerText, .metricChart .chartArea .cell.cs7 .innerText, .metricChart .chartArea .cell.cs8 .innerText {
+    color: #567e10;
+}
+
+
+.metricChart .chartArea .cell .innerText .hc-cell-title {
+    font-size: 16px;
+}
+
+.metricChart .chartArea .cell .innerText .hc-cell-body {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.metricChart .chartArea .cell.noResults {
+    background: url(../Images/cell-nodata-bg.png) repeat;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    opacity: 0.10;
+}
+
+.metricChart .chartArea .cell.hc-cell-hover {
+    border: 1px solid #fff;
+}
+
+.metricChart .marquee .timeSelectionContainer {
+    position: absolute;
+    right: 30px;
+    top: 4px;
+    height: 20px;
+    width: 100px;
+    text-align: right;
+    background: url(../Images/icon-chevron-collapsed.png) no-repeat center right;
+}
+
+.metricChart .marquee .timeRangeOption {
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+    outline: none;
+    text-transform: uppercase;
+    font-family: "Segoe UI Semibold";
+    font-size: 11px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0.0;
+}
+
+.metricChart .marquee .timeRangeValue {
+    position: absolute;
+    right: 20px;
+    top: 1px;
+    width: 100px;
+    text-transform: uppercase;
+    font-family: "Segoe UI Semibold";
+    font-size: 11px;
+    vertical-align: middle;
+    color: #525252;
+    white-space: nowrap;
+    z-index: 0;
+}
+
+.metricChart .marquee .refreshContainer {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 4px;
+    width: 20px;
+    margin-left: 10px;
+    height: 20px;
+    background: url(../Images/icon-refresh2-16-g-idl.png) no-repeat;
+}
+
+.metricChart .marquee .refreshContainer:hover {
+    background-image: url(../Images/icon-refresh2-16-g-hvr.png);
+}
+
+
+.metricChart .headerColumn {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.metricChart .headerColumn .container {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    color: #323232;
+}
+
+.metricChart .headerColumn .container .header {
+    position: absolute;
+    display: block;
+    left: 0px;
+    background-color: #e1f3fb;
+}
+
+.metricChart .headerColumn .container .header .text {
+    padding-left: 10px;
+    font-family: "Segoe UI Semibold";
+    white-space: nowrap;
+    font-size: 11px;
+    text-overflow: clip;
+}
+
+
+.metricChart .headerColumn .container .selectionArea {
+    position: absolute;
+    display: block;
+    right: 0px;
+}
+
+.metricChart .headerColumn .container:hover .header {
+    background: #c3e7f7 url(../Images/grid-go-wht.png) no-repeat right center;
+}
+
+.metricChart .headerColumn .container:hover .selectionArea {
+    background-color: #daf0fa;
+}
+
+.metricChart .headerColumn .container:hover .header:hover {
+    background-color: #71b1d1;
+    color: #FFFFFF;
+}
+
+.metricChart .headerColumn .container.selected .header {
+    background: #3aa0cc url(../Images/grid-go-wht.png) no-repeat right center;
+    color: #FFFFFF;
+}
+.metricChart .headerColumn .container.selected .selectionArea {
+    background-color: #6ac4ea;
+}
+
+.metricChart .headerColumn .container.selected .header:hover {
+    background-color: #71b1d1;
+}
+
+.metricChart .emptyChartText {
+    display: none;
+}
+
+.metricChart.loading .chartLoading {
+    display: block;
+    background: url(../Images/spinner-md.gif) no-repeat center center;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 30;
+}
+
+.metricChart.loading .chartArea, .metricChart.loading .headerColumn, .metricChart.loading .timeAxis, .metricChart.loading .columnSelectionRow {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    opacity: 0.10;
+}
+
+
+.metricChart.empty .chartArea {
+    border: 1px solid #000;
+    border-left: 0;
+    background-color: #EEE;
+    background-image: url(../Images/cell-nodata-bg.png);
+    background-repeat: repeat;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    opacity: 0.10;
+}
+
+.metricChart.empty .headerColumn {
+    border: 1px solid #000;
+    border-right: 0;
+    background: #e1f3fb url(../Images/cell-nodata-bg.png) repeat;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    opacity: 0.10;
+}
+
+.metricChart.empty .emptyChartText {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 37px;
+    line-height: 37px;
+    background-color: #E7E7E7;
+    color: #535353;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Segoe UI Light";
+}

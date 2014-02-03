@@ -1,0 +1,16 @@
+﻿.waz-placeholder-container {
+    position: relative;
+}
+
+.waz-placeholder-container .placeholder {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    color: #aaa;
+    font-style: italic;
+    text-transform: uppercase;
+}

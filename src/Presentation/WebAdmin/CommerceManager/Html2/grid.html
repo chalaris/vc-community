@@ -1,0 +1,97 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8"/>
+        <title>Simple Grid Examples</title>
+        <!-- Style Links -->
+        <link href="/Content/_oss/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" /> 
+        <link href="/Content/waz/waz.grid.css " rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="scriptLinksContainer">
+            <!-- JQuery scripts-->
+            <script src="/Scripts/_oss/jquery-1.7.1.js"></script>
+            <script src="/Scripts/_oss/jquery-ui-1.8.18.js"></script>
+            
+            <!-- Knockout script -->
+            <script src="/Scripts/_oss/knockout-2.1.0.js"></script>
+            <script src="/Scripts/_oss/simple.inheritance.js"></script>
+            
+
+            <!-- fx shell scripts -->
+            <script src="/Scripts/UxFxScript.min.js"></script>
+            
+            
+            <script src="/Scripts/waz/waz.formatters.js"></script>
+            <script src="/Scripts/waz/waz.datagrid.js"></script>
+            <script src="/Content/Common/Scripts/waz.observableGrid.js"></script>
+        </div>
+
+        <!-- Sample HTML Code -->
+        <div id="sampleHTMLCodeContainer">
+            <div id="render">
+            </div>
+            
+            <div id="gridContainer" class="gridContainer">
+            </div>
+
+            <div class="options">
+                <button id="add">Add row</button>
+                <button id="remove">Remove row</button>
+            </div>
+            <div class="options">
+                <label><input type="checkbox" id="selectable"/> Selectable</label>
+                <label><input type="checkbox" id="multiselect"/> Multiselect</label>
+            </div>
+
+            <div id="grid"></div>
+        </div>
+
+        <div id="sampleScriptCodeContainer">
+            <!-- Sample Script Code -->
+            <script type="text/javascript">
+                
+                // This function has been set to be the opened function earlier
+                // For this to work, there should be a <div> in your template for the tab with a class of "gridContainer"
+                function loadTab(extension, renderArea, initData) {
+                    // Create a dataset so the client-side framework knows how to get the data for refreshes
+                    var localDataSet = [
+                            { Name: "asdasd", Type: "string" },
+                            {Name: "asdasd", Type: "string"}
+                        ];//Exp.Data.getLocalDataSet(DomainTenantExtension.Controller.listOwnedDomainNamesUrl),
+                    // Define the columns in the grid. A number of pre-defined types exist.
+                    columns = [
+                      { name: "Name", field: "Name", sortable: false },
+                      //{ name: "Status", field: "Status", type: "status", displayStatus: waz.interaction.statusIconHelper(statusIcons), filterable: false, sortable: false },
+                      { name: "Type", field: "Type", filterable: false, sortable: false }//,
+                      //{ name: "Expires", field: "ExpiryDate", filterable: false, sortable: false, formatter: dateFormatter }
+                    ];
+
+                    grid = renderArea.find(".gridContainer")
+                      .wazObservableGrid("destroy")
+                      .wazObservableGrid({
+                          lastSelectedRow: null,
+                          data: localDataSet,
+                          keyField: "name",
+                          columns: columns,
+                          gridOptions: {
+                              // Function to call when a row is selected. Optional.
+                              // rowSelect: onRowSelected
+                          },
+                          // If the grid is empty, a template can be rendered instead, typically suggesting to the user that they create a new resource
+                          emptyListOptions: {
+                              extensionName: "DomainTenantExtension",
+                              templateName: "domainsTabEmpty",
+                              arrowLinkSelector: ("{0} .dm-new-domain-link").format(renderArea.selector),
+                              arrowLinkAction: global.DomainTenantExtension.CreateWizard.showCreateWizard
+                          }
+                      });
+                }
+
+                loadTab(null, $("#sampleHTMLCodeContainer"), null);
+            </script>
+        </div>
+    </body>
+</html>

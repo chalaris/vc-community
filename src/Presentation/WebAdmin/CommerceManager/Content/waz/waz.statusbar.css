@@ -1,0 +1,74 @@
+﻿.waz-statusbar {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.waz-statusbar .waz-statusbar-icon {
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 16px;
+}
+
+.waz-statusbar .waz-statusbar-content .relative {
+    position: relative;
+}
+
+.waz-statusbar .waz-statusbar-content {
+    display: table;
+    line-height: 14px;
+    padding: 20px 0 20px 10px;
+    position: relative;
+    vertical-align: top;
+}
+
+.waz-statusbar .waz-statusbar-content-row {
+    display: table-row;
+}
+
+.waz-statusbar .waz-statusbar-content-header {
+    display: table-cell;
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.waz-statusbar .waz-statusbar-content-details {
+    display: table-cell;
+    padding-left: 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.waz-statusbar .waz-statusbar-message {
+    color: #444;
+}
+
+.waz-statusbar .waz-statusbar-status {
+    font-size: 14px;
+    margin-left: 24px;
+    text-transform: uppercase;
+}
+
+.waz-statusbar .waz-statusbar-info {
+    color: #222;
+}
+
+.waz-statusbar .waz-statusbar-warning,
+.waz-statusbar .waz-statusbar-alert {
+    color: Orange;
+}
+
+.waz-statusbar .waz-statusbar-question {
+    color: #2486B5;
+}
+
+.waz-statusbar .waz-statusbar-error {
+    color: Red;
+}

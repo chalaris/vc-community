@@ -1,0 +1,63 @@
+﻿/* TODO: Correct location for following style */
+
+.aux-chart-menu {
+    float: right;
+}
+
+.chartLegendColorIndicator {
+    width: 30px;
+    height: 3px;
+    background-color: #f00;
+    float: left;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+.chartLegendLabel {
+    color: #434343;
+    display: inline-block;
+    font-family: "Segoe UI";
+    font-size: 11px;
+    height: 14px;
+    margin: 0 15px 0 0;
+    max-width: 150px;
+    padding: 0;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    vertical-align: middle;
+	white-space: nowrap;	   
+}
+
+.chartLegend-items-list input[type="checkbox"] {
+    display: none;
+}
+
+.chartLegend-metric-icon-img {
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    margin: 6px 8px 6px 6px;    
+    position: static;
+    vertical-align: middle;
+}
+
+.chartLegend-items-list {
+    list-style-type: none;    
+    outline: none;
+    overflow-y: auto;
+}
+
+.chartLegendContainer .chartLegend-items-list:after {
+    overflow-y:auto;
+}
+
+.chartLegendContainer .chartLegend-items-list li {
+    float: left;
+}    
+
+.chartLegendContainer .chartLegend-items-list li.last-child {
+    margin-right: 0;
+}

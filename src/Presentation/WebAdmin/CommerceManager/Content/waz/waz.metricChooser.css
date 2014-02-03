@@ -1,0 +1,95 @@
+﻿.waz-metricChooser-container {
+    top: 5px;
+    bottom: 5px;
+    left: 10px;
+    right: 10px;        
+}
+
+.waz-metricChooser-grid {  
+   bottom: 40px;
+   top: 10px;
+   left: 5px;
+   right: 5px;   
+   display: none;
+}
+
+.waz-metricChooser-grid.selected {
+    display: inherit;
+}
+
+.waz-metricChooser-grid-container {   
+    clear: both;
+    height: 420px;
+    margin-top: 10px;    
+}
+
+.waz-metricChooser-placeholder {
+    height: 20px;
+}
+
+.waz-metricChooser-resources-container {
+    margin-top: 24px;
+}
+
+.waz-metricChooser-resources-list {
+    list-style-type: none;    
+}
+
+.waz-metricChooser-resources-list:after, .waz-metricChooser-grid:after {
+    overflow-y:auto;
+}
+
+.waz-metricChooser-resources-list li {
+    float: left;
+    margin-right: 24px;
+    margin-bottom: 20px;
+}    
+
+.waz-metricChooser-resources-list li.last-child {
+    margin-right: 0;
+}
+
+.waz-metricChooser-resources-list li a {
+    font-size: 12px;
+    font-weight: normal;
+    color: #7f7f7f;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.waz-metricChooser-resources-list li a.selected {
+    font-weight: bold;
+    color: #323232;
+}
+
+.waz-metricChooser-container .checkboxText {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.waz-metricChooser-lock {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+    opacity: 0.75;
+}
+
+.waz-metricChooser-spinner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent url(../Images/spinner-md.gif)
+        center center no-repeat;
+}
+
+/* Override Preview badge title position in the chooser */
+.waz-metricChooser-container .preview-badge-ontitle {
+    vertical-align: text-top;
+    top: inherit;
+}

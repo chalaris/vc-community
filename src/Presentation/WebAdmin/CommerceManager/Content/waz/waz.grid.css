@@ -1,0 +1,187 @@
+﻿.waz-grid.fx-grid .waz-grid-spinner {
+    width: 24px;
+    padding: 0;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-spinner img {
+    vertical-align: middle;
+    width: 20px;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation {
+    padding: 0;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation span, .waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation a {
+    padding-left: 10px;
+    display: block;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation a {
+    color: inherit;
+    font-family: "Segoe UI Semibold";
+    background-color: #e1f3fb;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation a:hover,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a:hover,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"] .waz-grid-navigation a,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"]:hover .waz-grid-navigation a,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"]:hover .waz-grid-navigation a:hover {
+    background-image: url(../Images/grid-go-wht.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.waz-grid.fx-grid .fx-grid-groupdata .waz-grid-navigation a:hover,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a:hover,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"]:hover .waz-grid-navigation a:hover  {
+    text-decoration: none;
+    background-color: #71b1d1;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a {
+    background-color: #c3e7f7;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a:hover {
+    color: #fff;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"] .waz-grid-navigation a,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"]:hover .waz-grid-navigation a {
+    background-color: #3aa0cc;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr .waz-grid-navigation a span {
+    padding-left: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-childrows tr .waz-grid-navigation a span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr[aria-selected="true"] .waz-grid-navigation a span,
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr:hover .waz-grid-navigation a span {
+    margin-right: 25px;
+}
+
+.waz-grid.fx-grid table tbody.fx-grid-childrows tr:hover .waz-grid-navigation a span {
+    margin-right: 25px;
+}
+
+.waz-grid.fx-grid .waz-grid-status {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    margin-right: 6px;
+}
+
+.waz-grid.fx-grid span.waz-grid-status {
+    display: inline-block;
+    background: url(../Images/ListIcons_16px.png) no-repeat right center;
+}
+
+/* TODO: This is temporary fix to support different status icon during selected states. */
+.waz-grid.fx-grid tr[aria-selected="true"] td.status span.waz-grid-status {
+    background: url(../Images/ListIcons_W_16px.png) no-repeat right center;
+}
+
+/* Size of your sprite */
+.waz-grid.fx-grid .fx-grid-sprite {
+    width: 16px;
+    height: 16px;
+}
+/* Default position */
+.waz-grid.fx-grid .fx-grid-sprite img {
+    left: 0;
+}
+/* Selected position */
+.waz-grid.fx-grid table tbody.fx-grid-groupdata tr.fx-grid-selected .fx-grid-sprite img {
+    left: -16px;
+}
+
+/* Attributes used as above */
+.waz-grid.fx-grid .fx-grid-sprite.complete img {
+    top: 0;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.stopped img {
+    top: -16px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.paused img {
+    top: -31px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.running img {
+    top: -47px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.warning img {
+    top: -63px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.bang img {
+    top: -79px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.question img {
+    top: -95px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.statusAlert img {
+    top: -111px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.statusInfo img {
+    top: -129px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.statusError img {
+    top: -144px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.statusWarning img {
+    top: -160px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.directory img {
+    top: -176px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.file img {
+    top: -192px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.collapsed img {
+    top: -213px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.expanded img {
+    top: -230px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.output img {
+    top: -255px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.edit img {
+    top: -271px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.created img {
+    top: -287px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.pending img {
+    top: -303px;
+}
+
+.waz-grid.fx-grid .fx-grid-sprite.inProgress img {
+    top: -319px;
+}

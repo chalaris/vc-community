@@ -1,0 +1,368 @@
+﻿/*** TABLE ***/
+
+/* Table */
+.fx-editablecontrol.waz-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fx-editablecontrol.waz-table .fx-shadow {
+    display: none;
+}
+
+.fx-editablecontrol.waz-table table th {
+    color: #000;
+    padding-left: 9px;
+}
+
+.fx-editablecontrol.waz-table table td {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 10px;
+    height: 31px;
+    background-color: #F3F3F3;
+}
+
+.fx-editablecontrol.waz-table table tr {
+    border-bottom: 2px solid #fff;
+}
+
+/*** HEADER ***/
+
+/* Column headers */
+.fx-editablecontrol.waz-table table thead th {
+    border-bottom: 2px solid #000;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+/*** BODY ***/
+
+/* Body inputs */
+.fx-editablecontrol.waz-table table tbody input {
+    width: 100%;
+    height: 20px;
+    padding: 0 0 0 5px;
+    margin: 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.fx-editablecontrol.waz-table table tbody .waz-table-row-norows input {
+    font-style: italic;
+}
+
+/* Body inputs hover */
+.fx-editablecontrol.waz-table table tbody .waz-table-row-active input,
+.fx-editablecontrol.waz-table table tbody tr[data-placeholder="true"] input {
+    background-color: #FFFFFF;
+    border: 1px solid #999;
+}
+
+.fx-editablecontrol.waz-table table tbody .waz-table-row-active input:hover,
+.fx-editablecontrol.waz-table table tbody tr[data-placeholder="true"]  input:hover {
+    border-color: #2486B5;
+}
+
+/* Body readonly inputs hover */
+.fx-editablecontrol.waz-table table tbody .waz-table-row-active input[readonly='readonly'],
+.fx-editablecontrol.waz-table table tbody tr[data-placeholder="true"] input[readonly='readonly'] {
+    padding-left: 5px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.fx-editablecontrol.waz-table .waz-table-row-number {
+    width: 27px;
+    font-weight: bold;
+}
+
+.fx-editablecontrol.waz-table .waz-table-row-number-header {
+    padding-left: 2px;
+}
+
+/* NOTE: Do not combine placeholder pseudo elements (they do not work unless separated) */
+.fx-editablecontrol.waz-table table tbody input::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+.fx-editablecontrol.waz-table table tbody input:-moz-placeholder {
+    font-style: italic;
+}
+
+.fx-editablecontrol.waz-table table tbody input::-moz-placeholder {
+    font-style: italic;
+}
+
+.fx-editablecontrol.waz-table table tbody input:-ms-input-placeholder {
+    font-style: italic;
+}
+
+/* Edit marker */
+.fx-editablecontrol.waz-table tr .waz-table-edit-marker {
+    border: none;
+    padding: 0;
+    width: 5px;
+    background-color: transparent;
+}
+
+.fx-editablecontrol.fx-editablecontrol-edited.waz-table tbody tr[data-modified='true'] .waz-table-edit-marker,
+.fx-editablecontrol.fx-editablecontrol-edited.waz-table tbody tr.waz-table-row-norows .waz-table-edit-marker {
+    background-color: #C84FD7;
+}
+
+.fx-editablecontrol.ui-state-disabled.waz-table tbody tr[data-modified='true'] .waz-table-edit-marker {
+    background-color: #777;
+}
+
+/*** IMAGES/BUTTONS ***/
+
+/* Remove dialog stylings */
+.fx-editablecontrol.waz-table table tbody button,
+.fx-editablecontrol.waz-table table tbody input[type="button"]  {
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* Add and cancel/delete images */
+.fx-editablecontrol.waz-table td.waz-table-column-addcancel {
+    text-align: right;
+    width: 36px;  /* 20px x1 button(s), 15px padding, 1px to make the container wider */
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-addcancel {
+    display: none;
+    width: 20px;
+    border: none;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: transparent;
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-add {
+    background-image: url(/Content/waz/images/wazTable-plus.png);
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-cancel {
+    background-image: url(/Content/waz/images/wazTable-cancel.png);
+}
+
+/* Add and cancel/delete image hover */
+
+.fx-editablecontrol.waz-table .waz-table-row-active[data-placeholder="false"] .waz-table-image-addcancel[option-enabled='true'],
+.fx-editablecontrol.waz-table .waz-table-row-norows .waz-table-image-addcancel[option-enabled='true'] {
+    display: inline;
+}
+
+.fx-editablecontrol.waz-table .waz-table-row-active[data-placeholder="false"] .waz-table-image-addcancel[option-enabled='true'] {
+    display: inline;
+}
+
+/* Up and down arrow images */
+.fx-editablecontrol.waz-table td.waz-table-column-updown {
+    padding: 0px;
+    width: 75px; /* 31px x2 buttons, 1px x2 button margins, 1px to make the container wider, 10px padding? */
+    border: none;
+    background-color: transparent;
+    padding-left: 0px;
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-updown {
+    display: none;
+    float: left;
+    width: 31px;
+    height: 100%;
+    border: none;
+    margin-left: 1px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #404040;
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-up {
+    background-image: url(/Content/waz/images/wazTable-up.png);
+}
+
+.fx-editablecontrol.waz-table .waz-table-image-down {
+    background-image: url(/Content/waz/images/wazTable-down.png);
+}
+
+/* Up and down arrow image hover */
+.fx-editablecontrol.waz-table .waz-table-row-active[data-placeholder="false"] .waz-table-image-updown {
+    display: block;
+}
+
+/* Opacity */
+.fx-editablecontrol.waz-table.ui-state-disabled {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+}
+
+/* Opacity */
+.no-opacity {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -moz-opacity: 1.0;
+  -khtml-opacity: 1.0;
+  opacity: 1.0;
+}
+
+/* CONTROLS */
+
+/* checkbox */
+.fx-editablecontrol.waz-table table tbody label.waz-table-cell-checkbox-label{
+    color: #4d4d4d;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-size: 13px;
+    height: 20px;
+    line-height: 30px;
+    padding: 0 0 0 5px;
+    margin-right: 15px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.fx-editablecontrol.waz-table table tbody span.fx-checkbox {
+    display: inline-block;
+    margin-top: 2px;
+    line-height: 30px;
+    height: 16px;
+}
+
+/* select (fxDropdown) */
+.waz-table .fx-dropdown {
+    height: 20px;
+    border: 1px solid #f3f3f3;
+    background: none;
+}
+
+.fx-editablecontrol.waz-table table tbody input[type="checkbox"] {
+    width: 20px; 
+    border-width: 0px !important;
+    margin: 5px 5px 0px -15px;
+    padding-left: 0px;
+    float: left;
+}
+
+.fx-editablecontrol.waz-table table tbody div.fx-checkbox {
+    width: 20px; 
+    margin: 5px 5px 0px -15px;
+    padding-left: 0px;
+}
+
+.fx-editablecontrol.waz-table .waz-multiSelect-dropdown-title {
+    cursor: pointer;
+}
+
+.fx-editablecontrol.waz-table .waz-multiSelect-label {
+    display: inline !important;
+}
+
+.fx-editablecontrol.waz-table .fx-dropdown .fx-dropdown-current {
+    line-height: 20px;
+}
+
+.fx-editablecontrol.waz-table .fx-dropdown .fx-dropdown-arrow {
+    display: none;
+}
+
+.fx-editablecontrol.waz-table .fx-dropdown .fx-dropdown-list.fx-dropdown-flybelow {
+    top: 20px;
+}
+
+.fx-editablecontrol.waz-table .fx-dropdown .fx-dropdown-list.fx-dropdown-flyabove {
+    bottom: 20px;
+}
+
+.fx-editablecontrol.waz-table .fx-dropdown .fx-dropdown-list .fx-checkbox img {
+    vertical-align: baseline;
+}
+
+/* Hover */
+.fx-editablecontrol.waz-table .waz-table-row-active td.waz-table-control-editable .fx-dropdown,
+.fx-editablecontrol.waz-table tr[data-placeholder="true"] td.waz-table-control-editable .fx-dropdown {
+    border: 1px solid #A6A6A6;
+    background-color: #fff;
+}
+
+.fx-editablecontrol.waz-table table tbody .waz-table-row-active td.waz-table-control-editable .fx-dropdown:hover,
+.fx-editablecontrol.waz-table table tbody tr[data-placeholder="true"] td.waz-table-control-editable .fx-dropdown:hover {
+    border-color: #2486B5;
+}
+
+/* Hover disabled */
+.fx-editablecontrol.waz-table .waz-table-row-active td.waz-table-control-editable .fx-dropdown .fx-dropdown-arrow,
+.fx-editablecontrol.waz-table tr[data-placeholder="true"] td.waz-table-control-editable .fx-dropdown .fx-dropdown-arrow  {
+    display: inline;
+    top: -4px;
+    border: none;
+    border-left: 1px solid #A6A6A6;
+    clip: rect(3px 20px 24px 0px)
+}
+
+/* multiSelect */
+.waz-table .waz-multiSelectDropdown {
+    height: 20px;
+    border: 1px solid #f3f3f3;
+}
+
+.waz-table .waz-multiSelectDropdown:not(.fx-validation-invalid) {
+    background: none;
+}
+
+.waz-table .waz-multiSelectDropdown .waz-multiSelectDropdown-text {
+    line-height: 21px;
+}
+
+.fx-editablecontrol.waz-table .waz-multiSelectDropdown .waz-multiSelectDropdown-arrow {
+    display: none;
+}
+
+.fx-editablecontrol.waz-table .waz-multiSelectDropdown .waz-multiSelectDropdown-list .fx-checkbox img {
+    vertical-align: baseline;
+}
+
+/* Hover */
+.fx-editablecontrol.waz-table .waz-table-row-active td.waz-table-control-editable .waz-multiSelectDropdown,
+.fx-editablecontrol.waz-table tr[data-placeholder="true"] td.waz-table-control-editable .waz-multiSelectDropdown {
+    border: 1px solid #A6A6A6;
+    background-color: #fff;
+}
+
+.fx-editablecontrol.waz-table table tbody .waz-table-row-active td.waz-table-control-editable .waz-multiSelectDropdown:hover,
+.fx-editablecontrol.waz-table table tbody tr[data-placeholder="true"] td.waz-table-control-editable .waz-multiSelectDropdown:hover {
+    border-color: #2486B5;
+}
+
+/* Hover disabled */
+.fx-editablecontrol.waz-table .waz-table-row-active td.waz-table-control-editable .waz-multiSelectDropdown .waz-multiSelectDropdown-arrow,
+.fx-editablecontrol.waz-table tr[data-placeholder="true"] td.waz-table-control-editable .waz-multiSelectDropdown .waz-multiSelectDropdown-arrow  {
+    display: inline;
+    top: -4px;
+    border: none;
+    border-left: 1px solid #A6A6A6;
+    clip: rect(3px 20px 24px 0px)
+}
+
+/* Custom cell CSS classes */
+.fx-editablecontrol.waz-table table td.waz-table-property-value input[readonly='readonly'] {
+    color: #999;
+}
+
+.fx-editablecontrol.waz-table table td.waz-table-control-readonly.waz-table-property-value a.fx-dropdown {
+    color: #999;
+}
+
+/* TO-DO: remove when multiSelectDropDown inherit fx-validation */
+.validatorBalloonIcon {
+    margin-top: 2px;
+}

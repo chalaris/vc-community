@@ -1,0 +1,55 @@
+﻿.waz-nested-table-table-container {
+    margin-bottom: 20px;
+}
+
+.waz-nested-table-subtable-container {
+    display: inline-block;
+}
+
+.waz-nested-table-main-row {
+    margin-left: 18px;
+}
+
+
+.waz-nested-table-accordion-button{
+    width:18px;
+    height:29px;
+    float:left;
+    position:relative;
+    top:19px;
+}
+
+.waz-nested-table-accordion-button.collapsed {
+    background: #F3F3F3 url(/Content/Images/icon-arrow-collapsed.png) no-repeat 7px 7px;
+}
+
+.waz-nested-table-accordion-button.expanded {
+    background: #F3F3F3 url(/Content/Images/icon-arrow-expanded.png) no-repeat 7px 7px;
+}
+
+.waz-nested-table-table-accordion {
+    border-left: 1px solid #000000;
+    margin-left: 10px;
+}
+
+.waz-nested-table-subtable-container {
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+.waz-nested-table-table-container tbody .waz-table-edit-marker {
+    background-color: #F3F3F3 !important;
+}
+
+.waz-nested-table-table-container tbody tr[data-modified="true"] .waz-table-edit-marker {
+    background-color: #C84FD7 !important;
+}
+
+.waz-nested-table-button-balloon {
+    height: 28px;
+}
+
+.waz-nested-table-table-accordion .waz-nested-table-button-balloon {
+    margin-left: 25px;
+}
+
