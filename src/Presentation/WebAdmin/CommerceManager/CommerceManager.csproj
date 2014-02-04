@@ -360,6 +360,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Common\" />
+    <Folder Include="Html3\" />
     <Folder Include="Views\Items\" />
   </ItemGroup>
   <ItemGroup>
