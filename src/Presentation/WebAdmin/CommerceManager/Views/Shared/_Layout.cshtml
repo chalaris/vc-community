@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Partial("LinksAndScripts")
+</head>
+    <body ng-app="vcApp">
+        @RenderBody()
+        
+        <div class="container" ng-view>
+        </div>
+  
+        @* NOTE: No script should be included before the following line, it will include all scripts, including jQuery and others. *@
+        @Html.Partial("Scripts")
+    </body>
+</html>
