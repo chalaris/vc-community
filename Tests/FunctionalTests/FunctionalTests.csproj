@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.6.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging">
+      <HintPath>..\..\packages\EnterpriseLibrary.SemanticLogging.1.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -133,6 +136,7 @@
     <Compile Include="Customers\CustomerCaseScenarios.cs" />
     <Compile Include="Customers\MigrationScenarios.cs" />
     <Compile Include="Inventories\MigrationScenarios.cs" />
+    <Compile Include="Logging\SlabTest.cs" />
     <Compile Include="Marketing\Content\MigrationScenarios.cs" />
     <Compile Include="Marketing\DynamicContentScenarios.cs" />
     <Compile Include="Marketing\Helpers\MarketingTestBase.cs" />
@@ -253,6 +257,10 @@
     <ProjectReference Include="..\..\src\Extensions\Jobs\VirtoCommerceJobs\ServerJobs.csproj">
       <Project>{bfc7b47d-a7ee-4693-9334-5084c09c3d31}</Project>
       <Name>ServerJobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Extensions\Logging\VirtoCommerce.Slab\VirtoCommerce.Slab.csproj">
+      <Project>{8DCDA1BC-E983-4DBB-98B6-320847ACCDFE}</Project>
+      <Name>VirtoCommerce.Slab</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Extensions\Payments\PaymentGateways\PaymentGateways.csproj">
       <Project>{8f364fcd-e08e-42c1-ab83-1d9790fb1426}</Project>
