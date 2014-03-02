@@ -11,7 +11,7 @@ namespace VirtoCommerce.Web.CommerceManager.Common
 
     public abstract class ExtensionController : AsyncController
     {
-        private const string TAGHEADER = "x-ms-tag";
+        private const string TAGHEADER = "x-vc-tag";
 
         /// <summary>
         /// Gets or sets an arbitrary value used to exchange information

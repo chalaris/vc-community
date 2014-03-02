@@ -1,0 +1,2 @@
+﻿// Declare app level module which depends on filters, and services
+var VirtoApp = angular.module('vcApp', ['ngRoute', 'ngResource', 'vcApp.controllers', 'vcApp.Services', 'virtocommerce.modules', function () { }]);
