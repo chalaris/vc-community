@@ -243,6 +243,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceManager", "src\Pres
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceManager.Common", "src\Presentation\WebAdmin\CommerceManager.Common\CommerceManager.Common.csproj", "{73F31C60-99B7-4C99-B950-9BF864CD0532}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Api", "src\Presentation\WebAdmin\Commerce.Api\Commerce.Api.csproj", "{1E241D47-5263-4BED-B68F-C94F8E77C840}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.ApiClient", "src\Presentation\WebAdmin\Commerce.ApiClient\Commerce.ApiClient.csproj", "{511A1623-19B3-4359-9106-083ED8294DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -556,6 +560,18 @@ Global
 		{73F31C60-99B7-4C99-B950-9BF864CD0532}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{73F31C60-99B7-4C99-B950-9BF864CD0532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F31C60-99B7-4C99-B950-9BF864CD0532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E241D47-5263-4BED-B68F-C94F8E77C840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511A1623-19B3-4359-9106-083ED8294DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -629,6 +645,8 @@ Global
 		{5C1D0949-50AD-499E-96E3-B6973A23FAF8} = {8820DBC1-A4DA-4C80-84D0-E3581F46E93F}
 		{441F7E85-D5EE-4DE9-9EAB-F216CE7B7DC1} = {4E934B8C-EB40-45B9-B9A6-442C5F63F47D}
 		{73F31C60-99B7-4C99-B950-9BF864CD0532} = {4E934B8C-EB40-45B9-B9A6-442C5F63F47D}
+		{1E241D47-5263-4BED-B68F-C94F8E77C840} = {4E934B8C-EB40-45B9-B9A6-442C5F63F47D}
+		{511A1623-19B3-4359-9106-083ED8294DBC} = {4E934B8C-EB40-45B9-B9A6-442C5F63F47D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\ y.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
