@@ -350,7 +350,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 		{
 			if (SeoStepViewModel != null)
 			{
-				SeoStepViewModel.UpdateSeoKeywords();
+				SeoStepViewModel.SaveSeoKeywordsChanges();
 			}
 
 			// just basic properties inject is enough. Injecting collections can generate repository errors.
@@ -395,7 +395,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 		protected virtual void InnerItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "Code")
-				SeoStepViewModel.UpdateKeywordValueCode(InnerItem.Code);
+				SeoStepViewModel.ChangeKeywordValue(InnerItem.Code);
 			if (e.PropertyName == "PropertySetId")
 			{
 				SetupPropertiesAndValues(InnerItem.PropertySet, InnerItem.CategoryPropertyValues, InnerItemCatalogLanguages, PropertiesAndValues, IsWizardMode);
@@ -405,7 +405,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 
 		#region Properties tab
 
-		public bool IsCatalogLanguageFilteringEnabled { get { return _parentCatalog is catalogModel.Catalog; } }
+		public bool IsCatalogLanguageFilteringEnabled { get { return InnerItemCatalogLanguages != null && InnerItemCatalogLanguages.Count() > 1; } }
 		public string FilterLanguage { get; private set; }
 		public List<string> InnerItemCatalogLanguages { get; protected set; }
 		public ObservableCollection<PropertyAndPropertyValueBase> PropertiesAndValues { get; protected set; }
@@ -457,6 +457,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 			OnUIThread(() =>
 			{
 				OnPropertyChanged("InnerItemCatalogLanguages");
+				OnPropertyChanged("IsCatalogLanguageFilteringEnabled");
 
 				// filter values by locale
 				PropertiesLocalesFilterCommand.Execute(_parentCatalog.DefaultLanguage);

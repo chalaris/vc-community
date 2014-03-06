@@ -49,7 +49,7 @@ namespace VirtoCommerce.Web.Client.Modules
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
-            if (IsResourceFile())
+            if (IsResourceFile() || IsWebApi)
                 return;
 
             var application = (HttpApplication)sender;
@@ -82,15 +82,18 @@ namespace VirtoCommerce.Web.Client.Modules
             set.Add(ContextFieldConstants.CategoryId, new Tag(session.CategoryId));
 
             //Profile
-            var customer = StoreHelper.UserClient.GetCurrentCustomer();
-            if (customer != null)
+            if (IsRequestAuthenticated(context))
             {
-                if (customer.BirthDate.HasValue)
+                var customer = StoreHelper.UserClient.GetCurrentCustomer();
+                if (customer != null)
                 {
-                    set.Add(ContextFieldConstants.UserAge, new Tag(GetAge(customer.BirthDate.Value)));
+                    if (customer.BirthDate.HasValue)
+                    {
+                        set.Add(ContextFieldConstants.UserAge, new Tag(GetAge(customer.BirthDate.Value)));
+                    }
                 }
             }
-    
+
             PopulateBrowserBehavior(context, session);
             PopulateShoppingCart(context, session);
             PopulateGEOLocation(context, session);

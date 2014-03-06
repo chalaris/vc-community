@@ -201,6 +201,7 @@
     <Compile Include="Infrastructure\Behaviors\DataGridScrollIntoViewBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\EnterKeyDownBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\PermissionBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\TabControlKeyNavigationsIgnoreBehavior.cs" />
     <Compile Include="Infrastructure\Behaviors\TreeViewSelectedItemBehavior.cs" />
     <Compile Include="Infrastructure\Common\AttachedInputBindingsHelper.cs" />
     <Compile Include="Infrastructure\Common\BindingFromStringBehavior.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Infrastructure\Converters\IsIClosableConverter.cs" />
     <Compile Include="Infrastructure\Converters\IsNecessaryTypeConverter.cs" />
     <Compile Include="Infrastructure\Converters\IsNullConverter.cs" />
+    <Compile Include="Infrastructure\Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\TextCaseConverter.cs" />
     <Compile Include="Infrastructure\Converters\ToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\CollectionChangeGeneral.cs" />

@@ -18,13 +18,13 @@ namespace VirtoCommerce.ManagementClient.Reporting
     public class ReportingModule : IModule
     {
         private readonly IUnityContainer _container;
-		private readonly IAuthenticationContext _authContext;
+        private readonly IAuthenticationContext _authContext;
 
         public ReportingModule(IUnityContainer container, IAuthenticationContext authContext)
-		{
-			_container = container;
-			_authContext = authContext;
-		}
+        {
+            _container = container;
+            _authContext = authContext;
+        }
 
         public void Initialize()
         {

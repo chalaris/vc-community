@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
-using VirtoCommerce.Foundation.Data.AppConfig;
+using Microsoft.AspNet.SignalR.Hubs;
 using VirtoCommerce.Foundation.Data.Infrastructure;
 using VirtoCommerce.Foundation.Search;
 using VirtoCommerce.PowerShell.DatabaseSetup.Cmdlet;
@@ -17,30 +14,34 @@ namespace VirtoCommerce.Web.Areas.VirtoAdmin.Helpers
 {
     public class SetupWorker : Hub
     {
-
-        public static void SendMessage(string msg, params object[] format)
+        public static void TraceMessage(string msg, params object[] format)
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<SetupWorker>();
             context.Clients.All.traceMessage(string.Format(msg,format));
         }
 
-        public static void SendMessageLine(string msg, params object[] format)
+        /// <summary>
+        /// Used to send full report
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="format"></param>
+        public static void TraceMessageLine(string msg, params object[] format)
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<SetupWorker>();
             context.Clients.All.traceMessage(string.Format(msg, format), true);
         }
 
-        public static void DisplayErrorMessage(string msg, string selector = ".validation-summary-errors")
+        /// <summary>
+        /// Shows friendly message to user
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="format"></param>
+        public static void SendFriendlyMessage(string msg, params object[] format)
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<SetupWorker>();
-            context.Clients.All.otherMessage(msg, selector);
+            context.Clients.All.friendlyMessage(string.Format(msg, format));
         }
 
-        public static void DisplayInfoMessage(string msg, string selector = ".message-Information")
-        {
-            var context = GlobalHost.ConnectionManager.GetHubContext<SetupWorker>();
-            context.Clients.All.otherMessage(msg, selector);
-        }
 
         public void DoWork(InstallModel model)
         {
@@ -50,12 +51,12 @@ namespace VirtoCommerce.Web.Areas.VirtoAdmin.Helpers
             try
             {
                 SetupDb(ConnectionHelper.SqlConnectionString, model.SetupSampleData);
-                Trace.TraceInformation("Database successfully created.");
+                SendFriendlyMessage("Database successfully created.");
                 UpdateIndex(model);
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                TraceMessageLine(ex.Message);
                 Clients.All.failure(ex.Message);
                 return;
             }
@@ -72,31 +73,31 @@ namespace VirtoCommerce.Web.Areas.VirtoAdmin.Helpers
         {
             var dataFolder = @"App_Data\Virto\SampleData\Database";
             dataFolder = Path.Combine(System.Web.HttpContext.Current.Request.PhysicalApplicationPath ?? "/", dataFolder);
-
+            SendFriendlyMessage("Setting sample data path: {0}", dataFolder);
             // Configure database   
-            Trace.TraceInformation("Creating database and system tables.");
+            SendFriendlyMessage("Creating database and system tables.");
             new PublishAppConfigDatabase().Publish(connectionString, null, installSamples); // publish AppConfig first as it contains system tables
-            Trace.TraceInformation("Creating 'Store' module tables.");
+            SendFriendlyMessage("Creating 'Store' module tables.");
             new PublishStoreDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Catalog' module tables.");
+            SendFriendlyMessage("Creating 'Catalog' module tables.");
             new PublishCatalogDatabase().Publish(connectionString, dataFolder, installSamples);
-            Trace.TraceInformation("Creating 'Import' module tables.");
+            SendFriendlyMessage("Creating 'Import' module tables.");
             new PublishImportDatabase().Publish(connectionString, dataFolder, installSamples);
-            Trace.TraceInformation("Creating 'Customer' module tables.");
+            SendFriendlyMessage("Creating 'Customer' module tables.");
             new PublishCustomerDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Inventory' module tables.");
+            SendFriendlyMessage("Creating 'Inventory' module tables.");
             new PublishInventoryDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Log' module tables.");
+            SendFriendlyMessage("Creating 'Log' module tables.");
             new PublishLogDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Marketing' module tables.");
+            SendFriendlyMessage("Creating 'Marketing' module tables.");
             new PublishMarketingDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Order' module tables.");
+            SendFriendlyMessage("Creating 'Order' module tables.");
             new PublishOrderDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Review' module tables.");
+            SendFriendlyMessage("Creating 'Review' module tables.");
             new PublishReviewDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Search' module tables.");
+            SendFriendlyMessage("Creating 'Search' module tables.");
             new PublishSearchDatabase().Publish(connectionString, null, installSamples);
-            Trace.TraceInformation("Creating 'Security' module tables.");
+            SendFriendlyMessage("Creating 'Security' module tables.");
             new PublishSecurityDatabase().Publish(connectionString, dataFolder, installSamples);
         }
 
@@ -112,6 +113,7 @@ namespace VirtoCommerce.Web.Areas.VirtoAdmin.Helpers
                 searchConnection = new SearchConnection(dataSource, searchConnection.Scope, searchConnection.Provider);
             }
 
+            SendFriendlyMessage("Updating search index...");
             new UpdateSearchIndex().Index(searchConnection, model.ConnectionStringBuilder.ConnectionString, null, true);
         }
     }

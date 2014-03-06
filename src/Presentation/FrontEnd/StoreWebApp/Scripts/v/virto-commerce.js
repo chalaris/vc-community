@@ -85,7 +85,7 @@ VirtoCommerce.prototype = {
     //Method serlizes form fields into javascript object
     deserializeForm: function (form)
     {
-        data = {};
+        var data = {};
         var serialized = form.serializeArray();
         // turn the array of form properties into a regular JavaScript object
         for (var i = 0; i < serialized.length; i++)
@@ -211,7 +211,7 @@ VirtoCart.prototype = {
         // Update the page elements
         if (context.LineItemsView != null && context.LineItemsView.length > 0)
         {
-            if (context.Source == "MiniCart")
+            if (context.Source.toLowerCase() == "MiniCart".toLowerCase())
             {
                 if ($(".cart .popup").length > 0)
                 {
@@ -221,14 +221,14 @@ VirtoCart.prototype = {
                 $('#cart-subtotal').html(context.CartSubTotal);
                 $('#cart-total').html(context.CartTotal);
             }
-            else if (context.Source == "MiniCompareList")
+            else if (context.Source.toLowerCase() == "MiniCompareList".toLowerCase())
             {
                 $('.compare .popup').html(context.LineItemsView);
             }
-            else if (context.Source == "LineItems")
+            else if (context.Source.toLowerCase() == "LineItems".toLowerCase())
             {
                 $('#shopping-cart-table tbody').html(context.LineItemsView);
-                $('cart-subtotal').html(context.CartSubTotal);
+                $('#cart-subtotal').html(context.CartSubTotal);
                 $('#cart-total').html(context.CartTotal);
             }
         } else
@@ -340,8 +340,7 @@ VirtoCart.prototype = {
         window.location = VirtoCommerce.url('/checkout');
     },
 
-    getVariation: function ()
-    {
+    getVariation: function () {
 
         if ($("#SelectedVariationId").length != 0)
         {
@@ -364,6 +363,7 @@ VirtoCart.prototype = {
                 throw "You must select product first! Select property for each category";
             }
         }
+        return null;
     },
 
     updateMiniCart: function (name)
@@ -415,11 +415,9 @@ VirtoCart.prototype = {
 
         form.resetValidation();
         var validator = form.validate();
-        if (form.valid())
-        {
+        if (form.valid()) {
             //data = VirtoCommerce.deserializeForm(form);
-            data = $(form).serializeObject().ShippingEstimateModel;
-
+            var data = $(form).serializeObject().ShippingEstimateModel;
             $.ajax({
                 type: 'POST',
                 url: VirtoCommerce.url('/api/cart/estimatepost'),
@@ -507,22 +505,20 @@ VirtoAddress.prototype = {
 
     updateRegions: function (countryId)
     {
-        var dropdown, dropdown2, textbox;
+        var dropdown2, textbox;
 
         if (this.Id)
         {
-            dropdown = '#' + this.Id + '_Address_CountryCode';
             dropdown2 = '#' + this.Id + '_StateProvinceId';
             textbox = '#' + this.Id + '_Address_StateProvince';
         }
         else
         {
-            dropdown = '#Address_CountryCode';
             dropdown2 = '#Address_StateProvinceId';
             textbox = '#Address_StateProvince';
         }
 
-        $.each(v_regions, function (index, country)
+        $.each(window.v_regions, function (index, country)
         {
             if (country.CountryId == countryId)
             {
@@ -575,7 +571,7 @@ function bindDropDownList(e, targetDropDownList)
     }
 }
 
-function initQtySpinner(id, min, max, isAvailable)
+function initQtySpinner(id, min, max)
 {
     return $(id).spinner({ min: min, max: max, numberFormat: 'n0' });
 }

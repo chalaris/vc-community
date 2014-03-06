@@ -31,18 +31,21 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 		private IFileDialogService fileDialogService;
         private readonly IViewModelsFactory<IInputNameDialogViewModel> _inputNameVmFactory;
         public InteractionRequest<ConditionalConfirmation> InputNameDialogRequest { get; private set; }
+        public InteractionRequest<Notification> CommonNotifyRequest { get; private set; }
 		#endregion
 
 		#region ctor
 
-        public PickAssetViewModel(IAssetService assetRepository, IViewModelsFactory<IInputNameDialogViewModel> inputNameVmFactory)
+        public PickAssetViewModel(IAssetService assetRepository, 
+            IViewModelsFactory<IInputNameDialogViewModel> inputNameVmFactory)
 		{
 			_assetRepository = assetRepository;
             _inputNameVmFactory = inputNameVmFactory;
-            AssetPickMode = true;
 
 			AddressBarItems = new ObservableCollection<AssetEntitySearchViewModelBase>();
 			SelectedFolderItems = new ObservableCollection<AssetEntitySearchViewModelBase>();
+
+            CommonNotifyRequest = new InteractionRequest<Notification>();
 
 			OpenItemCommand = new DelegateCommand<object>(RaiseOpenItemRequest);
 			RefreshCommand = new DelegateCommand(LoadItems);
@@ -54,6 +57,9 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 			CommonConfirmRequest = new InteractionRequest<Confirmation>();
 
             InputNameDialogRequest = new InteractionRequest<ConditionalConfirmation>();
+
+            AssetPickMode = true;
+            RootItemId = null;
 		}
 
 	    #endregion
@@ -106,7 +112,15 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 	        get { return _selectedItem != null; }
 	    }
 
-        public bool AssetPickMode { get; set; }
+	    public bool AssetPickMode
+	    {
+	        get { return _assetPickMode; }
+	        set
+	        {
+	            _assetPickMode = value;
+	            OnPropertyChanged();
+	        }
+	    }
 
 	    private object _selectedItem;
 		public object ItemListSelectedItem
@@ -192,7 +206,6 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 		}
 
 		#region private members
-
 		private void UpdateAddressBar()
 		{
             AddressBarItems.Clear();
@@ -216,19 +229,29 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 					items.Add(new RootSearchViewModel(ParentItem.Parent));
 				}
 
-				switch (ParentItem.Type)
-				{
-					case AssetType.Folder:
-					case AssetType.Container:
-						items.AddRange(_assetRepository.GetChildrenFolders(ParentItem.InnerItemID).Select(x => new FolderSearchViewModel(x, ParentItem)));
-						items.AddRange(_assetRepository.GetChildrenFolderItems(ParentItem.InnerItemID).Select(x => new FileSearchViewModel(x)));
-						break;
-					case AssetType.Parent:
-						items.AddRange(_assetRepository.GetChildrenFolders(ParentItem.InnerItemID).Select(x => new FolderSearchViewModel(x, ParentItem)));
-						break;
-				}
 
-				OnUIThread(() =>
+                switch (ParentItem.Type)
+                {
+                    case AssetType.Folder:
+                    case AssetType.Container:
+                        items.AddRange(
+                            _assetRepository.GetChildrenFolders(ParentItem.InnerItemID)
+                                .Select(x => new FolderSearchViewModel(x, ParentItem)));
+                        if (ParentItem.InnerItemID != null)
+                        {
+                            items.AddRange(
+                                _assetRepository.GetChildrenFolderItems(ParentItem.InnerItemID)
+                                    .Select(x => new FileSearchViewModel(x)));
+                        }
+                        break;
+                    case AssetType.Parent:
+                        items.AddRange(
+                            _assetRepository.GetChildrenFolders(ParentItem.InnerItemID)
+                                .Select(x => new FolderSearchViewModel(x, ParentItem)));
+                        break;
+                }
+
+                OnUIThread(() =>
 				{
 					SelectedFolderItems.SetItems(items);
 
@@ -361,6 +384,12 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 
 		private void RaiseUploadRequest()
 		{
+            if (ParentItem.Parent == null)
+            {
+                CommonNotifyRequest.Raise(new Notification { Content = "Can not upload files to the root. Please select a folder first.", Title = "Error" });
+                return;
+            }
+
 			IEnumerable<FileType> fileTypes = new[] {
                 new FileType("all files", ".*"),
                 new FileType("jpg image", ".jpg"),
@@ -370,7 +399,7 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
                 new FileType("Report", ".rldc") 
             };
 
-			if (fileDialogService == null)
+		    if (fileDialogService == null)
 				fileDialogService = new System.Waf.VirtoCommerce.ManagementClient.Services.FileDialogService();
 
 			var result = fileDialogService.ShowOpenFileDialog(this, fileTypes);
@@ -454,6 +483,7 @@ namespace VirtoCommerce.ManagementClient.Asset.ViewModel.Implementations
 
 		private string _namePathDelimiter;
 	    private string _rootItemId;
+	    private bool _assetPickMode;
 
 	    private string NamePathDelimiter
 		{

@@ -123,6 +123,12 @@ namespace VirtoCommerce.Web.Client.Helpers
                 //Default language failover scenario
                 var store = StoreHelper.StoreClient.GetCurrentStore();
 
+                //Current store can be null when called from StoreHttpModule and store is not yet initialzed
+                if (store == null && type == SeoUrlKeywordTypes.Store)
+                {
+                    store = StoreHelper.StoreClient.GetStoreById(seoKeywords[0].KeywordValue);
+                }
+
                 if (store != null && !store.DefaultLanguage.Equals(language, StringComparison.OrdinalIgnoreCase))
                 {
                     seoKeyword = seoKeywords.FirstOrDefault(x => x.Language.Equals(store.DefaultLanguage, StringComparison.InvariantCultureIgnoreCase));
@@ -158,12 +164,14 @@ namespace VirtoCommerce.Web.Client.Helpers
         {
             try
             {
-                return CultureInfo.CreateSpecificCulture(languageCode);
+
+                if(!string.IsNullOrEmpty(languageCode))
+                    return CultureInfo.CreateSpecificCulture(languageCode);
             }
             catch
             {
-                return null;
             }
+            return null;
         }
 
         /// <summary>
@@ -177,6 +185,23 @@ namespace VirtoCommerce.Web.Client.Helpers
                 var retVal = true; // if there is no such setting we assume cache enabled
 
                 var settings = GetSettings("OutputCacheEnabled");
+
+                if (settings != null && settings.Length > 0)
+                {
+                    retVal = settings.First().BooleanValue;
+                }
+
+                return retVal;
+            }
+        }
+
+        public static bool ChildOutputCacheEnabled
+        {
+            get
+            {
+                var retVal = true; // if there is no such setting we assume cache enabled
+
+                var settings = GetSettings("ChildOutputCacheEnabled");
 
                 if (settings != null && settings.Length > 0)
                 {

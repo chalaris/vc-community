@@ -9,6 +9,7 @@ using VirtoCommerce.Foundation.Catalogs.Model;
 using VirtoCommerce.Foundation.Catalogs.Services;
 using VirtoCommerce.Foundation.Frameworks.Tagging;
 using VirtoCommerce.Web.Client.Extensions.Filters;
+using VirtoCommerce.Web.Client.Extensions.Routing;
 using VirtoCommerce.Web.Models;
 using VirtoCommerce.Web.Virto.Helpers;
 using AppConfigContext = VirtoCommerce.Foundation.AppConfig.Model.ContextFieldConstants;
@@ -31,12 +32,13 @@ namespace VirtoCommerce.Web.Controllers
 		/// </summary>
         private readonly DisplayTemplateClient _templateClient;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CatalogController"/> class.
-		/// </summary>
-		/// <param name="catalogClient">The catalog client.</param>
-		/// <param name="templateClient">The template client.</param>
-		public CatalogController(CatalogClient catalogClient,
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CatalogController" /> class.
+        /// </summary>
+        /// <param name="catalogClient">The catalog client.</param>
+        /// <param name="templateClient">The template client.</param>
+        public CatalogController(CatalogClient catalogClient,
                                  DisplayTemplateClient templateClient)
         {
 			_catalogClient = catalogClient;
@@ -60,10 +62,46 @@ namespace VirtoCommerce.Web.Controllers
                 var set = UserHelper.CustomerSession.GetCustomerTagSet();
                 set.Add(ContextFieldConstants.CategoryId, new Tag(categoryBase.CategoryId));
                 UserHelper.CustomerSession.CategoryId = categoryBase.CategoryId;
-                UserHelper.CustomerSession.LastShoppingPage = this.Request.Url.AbsoluteUri;
+
+                var model = CatalogHelper.CreateCategoryModel(categoryBase);
+
+                if (SiteMaps.Current != null)
+                {
+                    var node = GetCurrentSiteMapNode();
+
+                    if (Request.UrlReferrer != null &&
+                        Request.UrlReferrer.AbsoluteUri.StartsWith(Request.Url.GetLeftPart(UriPartial.Authority)))
+                    {
+                        if (node != null)
+                        {
+                            node.RootNode.Attributes["ShowBack"] = true;
+                        }
+
+                        if (Request.UrlReferrer.AbsoluteUri.Equals(Request.Url.AbsoluteUri))
+                        {
+                            UserHelper.CustomerSession.LastShoppingPage = Url.Content("~/");
+                        }
+                        else
+                        {
+                            UserHelper.CustomerSession.LastShoppingPage = Request.UrlReferrer.AbsoluteUri;
+                        }
+
+                    }
+
+                    if (node != null)
+                    {
+                        if (node.ParentNode != null && model.CatalogOutline !=null)
+                        {
+
+                            node.Attributes["Outline"] = new BrowsingOutline(model.CatalogOutline);
+                        }
+
+                        node.Title = model.DisplayName;
+                    }
+                }
 
                 // display category
-                return View(GetDisplayTemplate(TargetTypes.Category, categoryBase), categoryBase);
+                return View(GetDisplayTemplate(TargetTypes.Category, categoryBase), model);
             }
 
 			throw new HttpException(404, "Category not found");
@@ -87,7 +125,7 @@ namespace VirtoCommerce.Web.Controllers
 
 	        if (SiteMaps.Current != null)
 	        {
-	            var node = SiteMaps.Current.CurrentNode;
+	            var node = GetCurrentSiteMapNode();
 
 	            if (Request.UrlReferrer != null &&
 	                Request.UrlReferrer.AbsoluteUri.StartsWith(Request.Url.GetLeftPart(UriPartial.Authority)))
@@ -256,6 +294,22 @@ namespace VirtoCommerce.Web.Controllers
 
             var viewName = _templateClient.GetDisplayTemplate(type, set);
             return string.IsNullOrEmpty(viewName) ? type.ToString() : viewName;
+        }
+
+        private ISiteMapNode GetCurrentSiteMapNode()
+        {
+            // Need to skip decoding values in routes temporary because Sitemap calls GetRouteData and compares the values with the ones stored in siteMapNode
+            // Sitemap node is configured to preserve route values and they are encoded. 
+            // If values in current route does not match node route values sitemap fails to resolve current node
+            try
+            {
+                HttpContext.Items.Add(Constants.SkipSeoDecodeKey, true);
+                return SiteMaps.Current.CurrentNode;
+            }
+            finally
+            {
+                HttpContext.Items.Remove(Constants.SkipSeoDecodeKey);
+            }
         }
     }
 }

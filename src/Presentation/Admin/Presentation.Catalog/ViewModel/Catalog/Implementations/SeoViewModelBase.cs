@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
+using PropertyChanged;
 using VirtoCommerce.Foundation.AppConfig.Factories;
 using VirtoCommerce.ManagementClient.Catalog.Model;
 using ObjectModel = VirtoCommerce.Foundation.AppConfig.Model;
@@ -17,6 +18,7 @@ using VirtoCommerce.ManagementClient.Core.Infrastructure;
 
 namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementations
 {
+	[ImplementPropertyChanged]
 	public abstract class SeoViewModelBase : ViewModelBase, ISeoViewModel
 	{
 		#region Dependencies
@@ -70,9 +72,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 			{
 				var retVal = SeoKeywords.All(keyword => keyword.Validate()) && ValidateKeywords();
 				if (!retVal)
-				{
 					SeoLocalesFilterCommand.Execute(SeoKeywords.First(x => x.Errors.Any()));
-				}
 
 				return retVal;
 			}
@@ -86,51 +86,45 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 			}
 		}
 
-		private SeoUrlKeyword _currentSeoKeyword;
-		public SeoUrlKeyword CurrentSeoKeyword
-		{
-			get { return _currentSeoKeyword; }
-			set { _currentSeoKeyword = value; OnPropertyChanged(); }
-		}
+		public SeoUrlKeyword CurrentSeoKeyword { get; set; }
 
 		#endregion
 
 		#region ISeoViewModel
-
+		
 		public List<SeoUrlKeyword> SeoKeywords { get; protected set; }
 
-		public void UpdateKeywordValueCode(string newCode)
+		public void ChangeKeywordValue(string newCode)
 		{
 			SeoKeywords.ForEach(x =>
 				{
 					x.KeywordValue = newCode;
-					x.IsModified = true;
 				});
 		}
 
-		public virtual void UpdateSeoKeywords()
+		public virtual void SaveSeoKeywordsChanges()
 		{
 			//if any SEO keyword modified update or add it
-			if (SeoKeywords.Any(x => x.IsModified))
+			if (SeoKeywords.Any(x => x.IsChanged))
 			{
 				using (var appConfigRepository = _appConfigRepositoryFactory.GetRepositoryInstance())
 				{
-					SeoKeywords.Where(x => x.IsModified && x.Validate()).ToList().ForEach(keyword =>
+					SeoKeywords.Where(x => x.IsChanged && x.Validate()).ToList().ForEach(keyword =>
 					{
 						if (string.IsNullOrEmpty(keyword.Keyword))
 						{
+							//redundant true is a workaround for service error
 							var keywordToRemove =
 								appConfigRepository.SeoUrlKeywords.Where(
 									seoKeyword => true && seoKeyword.SeoUrlKeywordId.Equals(keyword.SeoUrlKeywordId)).FirstOrDefault();
 							if (keywordToRemove != null)
 							{
-								keywordToRemove.KeywordValue = keyword.KeywordValue;
-								keywordToRemove.IsActive = false;
-								appConfigRepository.Update(keywordToRemove);
+								appConfigRepository.Remove(keywordToRemove);
 							}
 						}
 						else
 						{
+							//redundant true is a workaround for service error
 							var originalKeyword =
 								appConfigRepository.SeoUrlKeywords.Where(
 									seoKeyword => true &&
@@ -155,15 +149,14 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 							}
 						}
 					});
+
 					appConfigRepository.UnitOfWork.Commit();
-					CurrentSeoKeyword.PropertyChanged -= CurrentSeoKeyword_PropertyChanged;
-					SeoKeywords.ForEach(y => y.IsModified = false);
-					CurrentSeoKeyword.PropertyChanged += CurrentSeoKeyword_PropertyChanged;
+					SeoKeywords.ForEach(y => y.IsChanged = false);
 					OnPropertyChanged("NavigateUrl");
 				}
 			}
 		}
-
+		
 		#endregion
 
 		#region Use custom properties
@@ -213,7 +206,8 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 
 		public DelegateCommand<SeoUrlKeyword> SeoLocalesFilterCommand { get; private set; }
 		public DelegateCommand NavigateToUrlCommand { get; private set; }
-
+		public DelegateCommand UpdateCustomProperties { get; private set; }
+		
 		#endregion
 
 		#region virtual and abstract methods
@@ -230,6 +224,7 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 										{
 											var newSeo = new SeoUrlKeyword(seo);
 											newSeo.BaseUrl = BuildBaseUrl(newSeo);
+											newSeo.PropertyChanged += CurrentSeoKeyword_PropertyChanged;
 											SeoKeywords.Add(newSeo);
 										});
 			}
@@ -238,13 +233,14 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 				{
 					if (!SeoKeywords.Any(keyword => keyword.Language.Equals(locale, StringComparison.InvariantCultureIgnoreCase)))
 					{
-						var newSeoKeyword = new SeoUrlKeyword { Language = locale, KeywordType = (int)_keywordType, KeywordValue = _keywordValue };
+						var newSeoKeyword = new SeoUrlKeyword(locale, (int)_keywordType, _keywordValue);
 						newSeoKeyword.BaseUrl = BuildBaseUrl(newSeoKeyword);
+						newSeoKeyword.PropertyChanged += CurrentSeoKeyword_PropertyChanged;
 						SeoKeywords.Add(newSeoKeyword);
 					}
 				});
 
-			SeoLocalesFilterCommand.Execute(SeoKeywords.First(x => x.Language.Equals(_defaultLanguage, StringComparison.InvariantCultureIgnoreCase)));
+			SeoLocalesFilterCommand.Execute(SeoKeywords.FirstOrDefault(x => x.Language.Equals(_defaultLanguage, StringComparison.InvariantCultureIgnoreCase)));
 		}
 
 		protected abstract string BuildBaseUrl(SeoUrlKeyword keyword);
@@ -257,29 +253,10 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 		{
 			SeoLocalesFilterCommand = new DelegateCommand<SeoUrlKeyword>(RaiseSeoLocaleChange);
 			NavigateToUrlCommand = new DelegateCommand(RaiseNavigateToUrl);
+			UpdateCustomProperties = new DelegateCommand(RaiseUpateCustomProperties);
 		}
 
-		private void RaiseSeoLocaleChange(SeoUrlKeyword currentKeyword)
-		{
-			if (CurrentSeoKeyword != null)
-				CurrentSeoKeyword.PropertyChanged -= CurrentSeoKeyword_PropertyChanged;
-			
-			CurrentSeoKeyword = currentKeyword;
-			
-			if (CurrentSeoKeyword != null)
-				CurrentSeoKeyword.PropertyChanged += CurrentSeoKeyword_PropertyChanged;
-
-			ResetCustomProperties();
-		}
-
-		void CurrentSeoKeyword_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			CurrentSeoKeyword.IsModified = true;
-			CurrentSeoKeyword.Validate();
-			OnPropertyChanged("CurrentSeoKeyword");
-		}
-
-		private void ResetCustomProperties()
+		private void RaiseUpateCustomProperties()
 		{
 			_useCustomImageText = !string.IsNullOrEmpty(CurrentSeoKeyword.ImageAltDescription);
 			_useCustomMetaDescription = !string.IsNullOrEmpty(CurrentSeoKeyword.MetaDescription);
@@ -287,9 +264,20 @@ namespace VirtoCommerce.ManagementClient.Catalog.ViewModel.Catalog.Implementatio
 			OnPropertyChanged("UseCustomTitle");
 			OnPropertyChanged("UseCustomMetaDescription");
 			OnPropertyChanged("UseCustomImageText");
+		}
+
+		private void RaiseSeoLocaleChange(SeoUrlKeyword currentKeyword)
+		{
+			CurrentSeoKeyword = currentKeyword;
+			RaiseUpateCustomProperties();
 			OnPropertyChanged("NavigateUrl");
 		}
 
+		void CurrentSeoKeyword_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			CurrentSeoKeyword.Validate();
+		}
+		
 		private void RaiseNavigateToUrl()
 		{
 			System.Diagnostics.Process.Start(NavigateUrl);

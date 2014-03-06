@@ -79,6 +79,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="ExpressionSerialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Shared\ExpressionSerialization.dll</HintPath>
@@ -154,9 +161,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\packages\WindowsAzure.Storage.3.0.1.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="MvcSiteMapProvider, Version=4.4.6.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
+    <Reference Include="MvcSiteMapProvider, Version=4.5.1.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\packages\MvcSiteMapProvider.MVC4.Core.4.4.6\lib\net45\MvcSiteMapProvider.dll</HintPath>
+      <HintPath>..\..\..\..\packages\MvcSiteMapProvider.MVC4.Core.4.5.1\lib\net45\MvcSiteMapProvider.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -173,6 +180,12 @@
     <Reference Include="Owin">
       <HintPath>..\..\..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PayPalCoreSDK">
+      <HintPath>..\..\..\..\packages\PayPalCoreSDK.1.4.1\lib\net45\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK">
+      <HintPath>..\..\..\..\packages\PayPalMerchantSDK.2.7.109\lib\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
     <Reference Include="PlainElastic.Net, Version=1.0.28.0, Culture=neutral, PublicKeyToken=0930e76dfc03b7ac, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Shared\PlainElastic.Net.dll</HintPath>
@@ -188,16 +201,15 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.Entity">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Management" />
-    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -284,9 +296,6 @@
     <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -312,10 +321,6 @@
     <Reference Include="Unity.WebApi">
       <HintPath>..\..\..\..\packages\Unity.WebAPI.0.10\lib\net40\Unity.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="VirtoCommerce.OrderWorkflow, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Shared\VirtoCommerce.OrderWorkflow.dll</HintPath>
-    </Reference>
     <Reference Include="WebActivatorEx">
       <HintPath>..\..\..\..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -334,6 +339,10 @@
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\..\..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsAzure.IPAddressRules, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Shared\WindowsAzure.IPAddressRules.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +410,7 @@
     <Compile Include="Virto\Helpers\CartHelperExtensions.cs" />
     <Compile Include="Virto\Helpers\CatalogHelper.cs" />
     <Compile Include="Virto\Helpers\MarketingHelper.cs" />
+    <Compile Include="Virto\Helpers\MVC\CatalogNodeProvider.cs" />
     <Compile Include="Virto\Helpers\MVC\CssMinifyFix.cs" />
     <Compile Include="Virto\Helpers\MVC\VirtoDataAnnotationsModelValidatorProvider.cs" />
     <Compile Include="Virto\Helpers\Payments\CreditCardOption.cs" />
@@ -597,8 +607,8 @@
     <Content Include="Areas\VirtoAdmin\Views\Web.config" />
     <Content Include="Areas\VirtoAdmin\Views\Install\Index.cshtml" />
     <Content Include="Areas\VirtoAdmin\Views\Install\Success.cshtml" />
-    <Content Include="Mvc.sitemap" />
     <Content Include="App_Data\Virto\Configuration\Reporting.config" />
+    <Content Include="Mvc.sitemap" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -722,15 +732,10 @@
     <Content Include="Views\Shared\AddToLinks.cshtml" />
     <Content Include="Views\Shared\BaseContentPlace.cshtml" />
     <Content Include="Views\Shared\PopupBase.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PriceModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Search.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SideMenu.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SideMenuNode.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\TopMenuNodeModel.cshtml" />
     <Content Include="Views\Shared\FailWhale.cshtml" />
     <Content Include="Views\Banner\DisplayTemplates\ProductImageAndPrice.cshtml" />
@@ -755,7 +760,6 @@
     <Content Include="Views\Account\OrderReturn.cshtml" />
     <Content Include="Views\Account\EditorTemplates\OrderReturnItem.cshtml" />
     <Content Include="Views\Account\RmaReturns.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
     <Content Include="Views\Checkout\Payments.cshtml" />
     <Content Include="Views\Account\DisplayTemplates\OrderLine.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
@@ -780,12 +784,19 @@
     <Content Include="Views\Banner\DisplayTemplates\CategoryUrl.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SearchItems.cshtml" />
     <Content Include="Views\Shared\_LayoutBase.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReviewTemplate.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReviewCommentTemplate.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\PaypalExpressButton.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <None Include="Web.Azure.config" />
   </ItemGroup>
   <ItemGroup>
@@ -861,6 +872,10 @@
       <Project>{930184f0-9508-4c17-8aae-1141a00c43a5}</Project>
       <Name>OrderWorkflowActivities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Extensions\Workflow\OrderWorkflow\OrderWorkflow.csproj">
+      <Project>{196ff814-152f-416d-82ab-9b1df3323839}</Project>
+      <Name>OrderWorkflow</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Areas\VirtoAdmin\Resources\Resource.resx">
@@ -890,8 +905,7 @@
           <IISUrl>http://localhost:2359/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://localhost/store</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

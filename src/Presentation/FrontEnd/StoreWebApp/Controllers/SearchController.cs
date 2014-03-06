@@ -11,6 +11,7 @@ using VirtoCommerce.Foundation.Catalogs.Model;
 using VirtoCommerce.Foundation.Catalogs.Search;
 using VirtoCommerce.Foundation.PlatformTools;
 using VirtoCommerce.Foundation.Search;
+using VirtoCommerce.Foundation.Search.Schemas;
 using VirtoCommerce.Web.Client.Extensions;
 using VirtoCommerce.Web.Client.Extensions.Filters;
 using VirtoCommerce.Client.Globalization;
@@ -122,7 +123,8 @@ namespace VirtoCommerce.Web.Controllers
             {
                 foreach (var key in facets.Keys)
                 {
-                    var filter = filters.SingleOrDefault(x=>x.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
+                    var filter = filters.SingleOrDefault(x=>x.Key.Equals(key, StringComparison.OrdinalIgnoreCase) 
+                        && (!(x is PriceRangeFilter) || ((PriceRangeFilter)x).Currency.Equals(StoreHelper.CustomerSession.Currency, StringComparison.OrdinalIgnoreCase)));
                     var val =
                         (from v in searchHelper.GetFilterValues(filter) where v.Id == facets[key] select v)
                             .SingleOrDefault();
@@ -147,17 +149,20 @@ namespace VirtoCommerce.Web.Controllers
             {
                 if (sort.Equals("price", StringComparison.OrdinalIgnoreCase))
                 {
-                    sortObject = new SearchSort(session.Pricelists.Select(priceList =>
-                        new SearchSortField(
-                            String.Format("price_{0}_{1}",
-                                criteria.Currency.ToLower(),
-                                priceList.ToLower()))
-                        {
-                            IgnoredUnmapped = true,
-                            IsDescending = isDescending,
-                            DataType = SearchSortField.DOUBLE
-                        })
-                        .ToArray());
+                    if (session.Pricelists != null)
+                    {
+                        sortObject = new SearchSort(session.Pricelists.Select(priceList =>
+                            new SearchSortField(
+                                String.Format("price_{0}_{1}",
+                                    criteria.Currency.ToLower(),
+                                    priceList.ToLower()))
+                            {
+                                IgnoredUnmapped = true,
+                                IsDescending = isDescending,
+                                DataType = SearchSortField.DOUBLE
+                            })
+                            .ToArray());
+                    }
                 }
                 else
                 {
@@ -192,6 +197,12 @@ namespace VirtoCommerce.Web.Controllers
                 {
                     PriceModel priceModel = null;
 	                ItemAvailabilityModel availabilityModel = null;
+                    var catalogIdPath = UserHelper.CustomerSession.CatalogId + "/";
+                    var searchTags = results.Items[item.ItemId.ToLower()].ToPropertyDictionary();
+
+                    //Cache outline
+                    HttpContext.Items["browsingoutline_" + item.Code.ToLower()] = searchTags[criteria.BrowsingOutlineField].ToString();
+
                     if (prices != null && prices.Any())
                     {
                         var lowestPrice =
@@ -200,10 +211,7 @@ namespace VirtoCommerce.Web.Controllers
                              select p).SingleOrDefault();
                         if (lowestPrice != null)
                         {
-	                        var catalogIdPath = UserHelper.CustomerSession.CatalogId + "/";
-	                        var currentOutline = results.Items[item.ItemId.ToLower()].Split(new[]{';'}, StringSplitOptions.RemoveEmptyEntries)
-								.FirstOrDefault(x => x.StartsWith(catalogIdPath, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
-
+                            var currentOutline = searchTags[criteria.OutlineField].ToString().Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(x => x.StartsWith(catalogIdPath, StringComparison.OrdinalIgnoreCase)) ?? string.Empty;
 							var tags = new Hashtable
 							{
 								{

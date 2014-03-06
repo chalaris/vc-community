@@ -12,5 +12,10 @@ namespace VirtoCommerce.Web.ApiClient
         {
             public const string Default = "http://schemas.virtocommerce.com/1.0";
         }
+
+        internal static class Headers
+        {
+            public const string PrincipalId = "x-vc-principal-id";
+        }
     }
 }
