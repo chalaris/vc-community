@@ -8,6 +8,7 @@ using System.Web.Http;
 namespace Commerce.Api.Controllers
 {
     using VirtoCommerce.Foundation.Data.Catalogs;
+    using VirtoCommerce.Web.ApiClient.DataContracts;
     using VirtoCommerce.Web.ApiClient.DataContracts.Catalogs;
 
     public class ItemsController : ApiController
@@ -24,9 +25,11 @@ namespace Commerce.Api.Controllers
         }        
 
         [HttpGet]
-        public List<Item> GetItemsList()
+        public QueryResult<Item> GetItemsList()
         {
-            return _repository.Items.Take(100).Select(x => new Item() { ItemId = x.ItemId, Name = x.Name }).ToList();
+            var list = _repository.Items.Take(100).Select(x => new Item() { ItemId = x.ItemId, Name = x.Name }).ToList();
+            var result = new QueryResult<Item> { items = list };
+            return result;
         }
 
         [HttpPut]
