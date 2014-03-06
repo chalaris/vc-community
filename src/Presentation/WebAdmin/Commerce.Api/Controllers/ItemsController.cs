@@ -7,8 +7,60 @@ using System.Web.Http;
 
 namespace Commerce.Api.Controllers
 {
+    using VirtoCommerce.Web.ApiClient.DataContracts.Catalogs;
+
     public class ItemsController : ApiController
     {
+        public static List<Item> items;
+
+        static ItemsController()
+        {
+            items = new List<Item>();
+            items.Add(new Item { ItemId = "0", Name = "XBOX"});
+            items.Add(new Item { ItemId = "1", Name = "Surface" });
+            items.Add(new Item { ItemId = "3", Name = "Kinect" });
+        }        
+
+        [HttpGet]
+        public List<Item> GetItemsList()
+        {
+           return items;
+        }
+
+        [HttpPut]
+        public void UpdateItem(Item item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException("item", "Item cannot be null");
+            }
+
+            var prod = (from p in items where p.ItemId == item.ItemId select p).FirstOrDefault();
+
+            if (prod != null)
+            {
+                prod.ItemId = item.ItemId;
+                prod.Name = item.Name;
+                prod.StartDate = item.StartDate;
+            }
+        }
+
+        [HttpPost]
+        public void AddItem(Item item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException("item", "Item cannot be null");
+            }
+
+            items.Add(new Item
+            {
+                ItemId = items.Count.ToString(),
+                Name = item.Name
+            });
+        }  
+
+        /*
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -35,5 +87,6 @@ namespace Commerce.Api.Controllers
         public void Delete(int id)
         {
         }
+         * */
     }
 }

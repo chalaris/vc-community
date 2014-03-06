@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Commerce.Api
+namespace VirtoCommerce.Web.Api
 {
     public static class WebApiConfig
     {
@@ -15,9 +15,9 @@ namespace Commerce.Api
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "AdminItems",
+                routeTemplate: "api/items",
+                defaults: new { controller = "Items" }
             );
         }
     }
