@@ -7,10 +7,12 @@ using System.Web.Http;
 
 namespace Commerce.Api.Controllers
 {
+    using VirtoCommerce.Foundation.Data.Catalogs;
     using VirtoCommerce.Web.ApiClient.DataContracts.Catalogs;
 
     public class ItemsController : ApiController
     {
+        private EFCatalogRepository _repository = new EFCatalogRepository("VirtoCommerce");
         public static List<Item> items;
 
         static ItemsController()
@@ -24,7 +26,7 @@ namespace Commerce.Api.Controllers
         [HttpGet]
         public List<Item> GetItemsList()
         {
-           return items;
+            return _repository.Items.Take(100).Select(x => new Item() { ItemId = x.ItemId, Name = x.Name }).ToList();
         }
 
         [HttpPut]
