@@ -5,7 +5,7 @@ namespace VirtoCommerce.Web.ApiClient.DataContracts.Catalogs
     using System.Runtime.Serialization;
 
     [DataContract(Namespace = Constants.DataContractNamespaces.Default)]
-    public class Item : IExtensibleDataObject
+    public class ItemResponse
     {
         [DataMember(Order = 1)]
         public string ItemId {get; set; }
@@ -21,10 +21,5 @@ namespace VirtoCommerce.Web.ApiClient.DataContracts.Catalogs
 
         [DataMember(Order = 4)]
         public bool IsActive { get; set; }
-
-        /// <summary>
-        /// Gets or sets the extension data.
-        /// </summary>
-        public ExtensionDataObject ExtensionData { get; set; }
     }
 }

@@ -74,7 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Constants.cs" />
-    <Compile Include="API\DataContracts\ItemList.cs" />
+    <Compile Include="CommerceClients.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="ExtensionsController.cs" />
     <Compile Include="JavaScriptSerializerExtensions.cs" />
     <Compile Include="JsonResultWithMaxJsonLimits.cs" />
@@ -84,6 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\DataContracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

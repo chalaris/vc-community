@@ -45,9 +45,9 @@ namespace VirtoCommerce.Web.ApiClient
         /// <summary>
         /// List items matching the given query
         /// </summary>
-        public Task<QueryResult<Item>> ListItemsAsync(Query query)
+        public Task<QueryResult<ItemResponse>> ListItemsAsync(Query query)
         {
-            return this.GetAsync<QueryResult<Item>>(this.CreateRequestUri(RelativePaths.Items, query.GetQueryString()));
+            return this.GetAsync<QueryResult<ItemResponse>>(this.CreateRequestUri(RelativePaths.Items, query.GetQueryString()));
         }
 
     }

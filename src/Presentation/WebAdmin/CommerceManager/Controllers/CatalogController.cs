@@ -10,7 +10,6 @@ namespace VirtoCommerce.Web.CommerceManager.Controllers
     using System.Threading.Tasks;
 
     using VirtoCommerce.Web.CommerceManager.Common;
-    using VirtoCommerce.Web.CommerceManager.Common.DataContracts;
     using VirtoCommerce.Web.CommerceManager.Models;
 
     public class CatalogController : ExtensionController
@@ -34,7 +33,8 @@ namespace VirtoCommerce.Web.CommerceManager.Controllers
             catch (HttpRequestException)
             {
                 // Returns an empty collection if the HTTP request to the API fails 
-                return this.JsonDataSet(new ItemList());
+                return null;
+                //return this.JsonDataSet(new ItemList());
             }
         }  
 	}

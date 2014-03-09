@@ -7,6 +7,10 @@ using System.Web.Http;
 
 namespace Commerce.Api.Controllers
 {
+    using System.Linq.Expressions;
+    using System.Web.Http.OData.Query;
+
+    using VirtoCommerce.Foundation.Catalogs.Model;
     using VirtoCommerce.Foundation.Data.Catalogs;
     using VirtoCommerce.Web.ApiClient.DataContracts;
     using VirtoCommerce.Web.ApiClient.DataContracts.Catalogs;
@@ -14,26 +18,39 @@ namespace Commerce.Api.Controllers
     public class ItemsController : ApiController
     {
         private EFCatalogRepository _repository = new EFCatalogRepository("VirtoCommerce");
-        public static List<Item> items;
+        public static List<ItemResponse> items;
+
+        // Typed lambda expression for Select() method. 
+        private static readonly Expression<Func<Item, ItemResponse>> AsItemResponse =
+            x => new ItemResponse
+            {
+                ItemId = x.ItemId,
+                Name = x.Name,
+                IsActive = x.IsActive
+            };
 
         static ItemsController()
         {
-            items = new List<Item>();
-            items.Add(new Item { ItemId = "0", Name = "XBOX"});
-            items.Add(new Item { ItemId = "1", Name = "Surface" });
-            items.Add(new Item { ItemId = "3", Name = "Kinect" });
         }        
 
         [HttpGet]
-        public QueryResult<Item> GetItemsList()
+        public QueryResult<ItemResponse> GetItemsList(int skip = 0, int take = 10, string sortProperty = "", string sortDirection = "", string filter = "")
         {
-            var list = _repository.Items.Take(100).Select(x => new Item() { ItemId = x.ItemId, Name = x.Name }).ToList();
-            var result = new QueryResult<Item> { items = list };
+            var list = _repository.Items.Take(100).Select(AsItemResponse).ToList();
+            var result = new QueryResult<ItemResponse> { items = list };
             return result;
         }
 
+        /* THIS METHOD ALLOWS TO QUERY UNDERLYING MODEL
+        public IQueryable<ItemResponse> GetItemsList(ODataQueryOptions<Item> odataQuery)
+        {
+            var items = odataQuery.ApplyTo(_repository.Items.Take(5)).OfType<Item>();
+            return items.Select(AsItemResponse);
+        }
+         * */
+
         [HttpPut]
-        public void UpdateItem(Item item)
+        public void UpdateItem(ItemResponse item)
         {
             if (item == null)
             {
@@ -51,47 +68,18 @@ namespace Commerce.Api.Controllers
         }
 
         [HttpPost]
-        public void AddItem(Item item)
+        public void AddItem(ItemResponse item)
         {
             if (item == null)
             {
                 throw new ArgumentNullException("item", "Item cannot be null");
             }
 
-            items.Add(new Item
+            items.Add(new ItemResponse
             {
                 ItemId = items.Count.ToString(),
                 Name = item.Name
             });
         }  
-
-        /*
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
-         * */
     }
 }
