@@ -10,6 +10,7 @@ namespace Commerce.Api.Controllers
     using System.Linq.Expressions;
     using System.Web.Http.OData.Query;
 
+    using VirtoCommerce.Client;
     using VirtoCommerce.Foundation.Catalogs.Model;
     using VirtoCommerce.Foundation.Data.Catalogs;
     using VirtoCommerce.Web.ApiClient.DataContracts;
@@ -31,8 +32,20 @@ namespace Commerce.Api.Controllers
 
         static ItemsController()
         {
-        }        
+        }
 
+        [HttpGet]
+        public QueryResult<Item> GetItemsList(int skip = 0, int take = 10, string sortProperty = "", string sortDirection = "", string filter = "", string responseGroup = "ItemSmall")
+        {
+            
+            var rg = (ItemResponseGroups)Enum.Parse(typeof(ItemResponseGroups), responseGroup);
+            var client = new CatalogClient(_repository, null, null, null, null);
+            var list = _repository.Items.OrderBy(m=>m.Name).Skip(skip).Take(take).ToList();
+            var result = new QueryResult<Item> { items = list };
+            return result;
+        }
+
+        /*
         [HttpGet]
         public QueryResult<ItemResponse> GetItemsList(int skip = 0, int take = 10, string sortProperty = "", string sortDirection = "", string filter = "")
         {
@@ -40,6 +53,7 @@ namespace Commerce.Api.Controllers
             var result = new QueryResult<ItemResponse> { items = list };
             return result;
         }
+         * */
 
         /* THIS METHOD ALLOWS TO QUERY UNDERLYING MODEL
         public IQueryable<ItemResponse> GetItemsList(ODataQueryOptions<Item> odataQuery)

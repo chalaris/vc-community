@@ -341,5 +341,7 @@ namespace VirtoCommerce.Foundation.Data.Catalogs
 		}
 
 		#endregion
+
+        public System.Data.Entity.DbSet<VirtoCommerce.Foundation.Catalogs.Model.CatalogBase> CatalogBases { get; set; }
 	}
 }
