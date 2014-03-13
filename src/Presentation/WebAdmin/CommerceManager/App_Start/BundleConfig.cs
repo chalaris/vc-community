@@ -27,7 +27,7 @@ namespace VirtoCommerce.Web.CommerceManager
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                         "~/Scripts/toastr.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/ng-grid.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/ng-grid.css", "~/Content/App/css/*.css"));
 
             //bundles.Add(new StyleBundle("~/Content/angular").Include("~/Scripts/App/Directives/Content/*.css"));
             bundles.Add(new StyleBundle("~/Content/toastr").Include("~/Content/toastr.css"));

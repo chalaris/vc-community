@@ -1,1 +1,21 @@
-﻿<div class="gridStyle" ng-grid="gridOptions"></div>
+﻿<div class="page-header">
+    <p class="lead">Browsing "Sample" catalog</p>
+    <h1>Catalogs</h1>
+    
+</div>
+<p>
+    <div class="row">
+        <div class="col-md-3">
+            <treecontrol class="tree-classic"
+               tree-model="dataForTheTree"
+               options="treeOptions"
+               on-selection="showSelected(node)"
+               selected-node="node1">
+               {{node.name}}
+            </treecontrol>
+
+        </div>
+        <div class="col-md-9"><div class="vc-list" ng-grid="gridOptions"></div></div>
+    </div>
+</p>
+

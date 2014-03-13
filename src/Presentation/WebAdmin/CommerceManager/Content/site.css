@@ -1,9 +1,18 @@
 ﻿body {
-padding-top: 70px;
+    padding-bottom: 40px;
+    padding-top: 60px;
 } 
 
-.gridStyle {
-    border: 1px solid rgb(212,212,212);
-    width: 100%; 
-    min-height: 300px
+.vc-list-container {
+    position: relative;
+    top:0;left:0;right:0;bottom:0;
 }
+
+.vc-list {
+    border: 1px solid rgb(212,212,212);
+    width: 100%;
+    min-height: 600px;
+    position:relative;top:0;left:0;right:0;bottom:0;
+}
+
+.page-header { margin: 10px 0 10px;}

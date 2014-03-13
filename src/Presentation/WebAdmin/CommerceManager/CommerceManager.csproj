@@ -123,6 +123,15 @@
   <ItemGroup>
     <Content Include="Content\App\app.js" />
     <Content Include="Content\App\Controllers\modulenav.js" />
+    <Content Include="Content\App\images\file.png" />
+    <Content Include="Content\App\images\folder-closed.png" />
+    <Content Include="Content\App\images\folder.png" />
+    <Content Include="Content\App\images\node-closed-2.png" />
+    <Content Include="Content\App\images\node-closed-light.png" />
+    <Content Include="Content\App\images\node-closed.png" />
+    <Content Include="Content\App\images\node-opened-2.png" />
+    <Content Include="Content\App\images\node-opened-light.png" />
+    <Content Include="Content\App\images\node-opened.png" />
     <Content Include="Content\App\Services\notification-factory.js" />
     <Content Include="Content\App\Services\route-factory.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -132,7 +141,8 @@
     <Content Include="Content\catalog\Scripts\CatalogExtension.js" />
     <Content Include="Content\App\Controllers\controllers.js" />
     <Content Include="Content\catalog\index.html" />
-    <Content Include="Content\core\directives\bootstrap-navbar.js" />
+    <Content Include="Content\App\css\tree-control.css" />
+    <Content Include="Content\App\Directives\angular-tree-control.js" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\App\Services\services.js" />
@@ -483,8 +493,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\App\Directives\" />
-    <Folder Include="Content\core\directives\templates\" />
+    <Folder Include="Content\core\directives\" />
     <Folder Include="Content\core\scripts\" />
     <Folder Include="Views\Items\" />
   </ItemGroup>
