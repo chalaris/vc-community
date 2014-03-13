@@ -5,13 +5,14 @@ using System.Web;
 
 namespace VirtoCommerce.Web.CommerceManager.Models
 {
-    public class ItemModel
+    public partial class ListItemModel
     {
         public string ItemId { get; set; }
         public string Name { get; set; }
-
+        public DateTime AvailableFrom { get; set; }
+        public DateTime ExpiresOn { get; set; }
         
-        public ItemModel()
+        public ListItemModel()
         {
         }
     }

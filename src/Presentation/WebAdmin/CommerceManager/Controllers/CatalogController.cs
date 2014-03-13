@@ -10,6 +10,7 @@ namespace VirtoCommerce.Web.CommerceManager.Controllers
     using System.Threading.Tasks;
 
     using VirtoCommerce.Web.CommerceManager.Common;
+    using VirtoCommerce.Web.CommerceManager.Controllers.Mocks;
     using VirtoCommerce.Web.CommerceManager.Models;
 
     public class CatalogController : ExtensionController
@@ -22,11 +23,8 @@ namespace VirtoCommerce.Web.CommerceManager.Controllers
         {
             try
             {
-                var itemModels = new[]
-                                     {
-                                         new ItemModel() { Name = "Item 1", ItemId = Guid.NewGuid().ToString() },
-                                         new ItemModel() { Name = "Item 2", ItemId = Guid.NewGuid().ToString() }
-                                     };
+                var itemModels = new CatalogServiceMock().GetItems("", 100, 0);
+
                 //var productModels = productNames.Select(d => new ProductModel(d)).ToList();
                 return this.JsonDataSet(itemModels);
             }
